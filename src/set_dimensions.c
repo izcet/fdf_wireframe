@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 15:27:42 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/24 23:13:00 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/25 01:33:01 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	get_num(char *str)
 			if (*str == ',')
 			{
 				if (is_valid_color((++str)))
-					str += 10;
+					str += 8;
 				else
 					return (-1);
 			}
