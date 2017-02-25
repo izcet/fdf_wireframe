@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   grid_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 12:53:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/24 13:05:06 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/24 20:21:04 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/24 20:22:58 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-void	close(s_data *window)
+int		grid_error(t_grid *grid, char *msg)
 {
-	// free window data
-	// free window
-	exit(0);
+	free(grid);
+	return (ft_error(msg));
 }

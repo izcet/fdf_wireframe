@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   close_win.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 13:06:20 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/24 14:32:22 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/24 14:29:30 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/24 14:30:36 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-
-
-t_grid	*read_file(char *filename)
+void	close_win(s_data *window)
 {
-	int			fd;
-	char		*line;
-	int			ret;
-//	t_grid		*grid;
-
-	
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		exit(ft_error("opening file."));
-	while ((ret = get_next_line(fd, &line)) > 0)
-	{
-
-	}
-	close(fd);
-	if (ret < 0)
-		exit(ft_error("reading from file."));
-	//check_grid
-	//return grid if validi
-	return (NULL); //
+	// free window data
+	// free window
+	(void)window;
+	exit(0);
 }

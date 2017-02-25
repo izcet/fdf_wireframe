@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   is_valid_color.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 13:06:20 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/24 14:32:22 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/24 17:23:07 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/24 23:13:16 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-
-
-t_grid	*read_file(char *filename)
+static int	is_hex(char c)
 {
-	int			fd;
-	char		*line;
-	int			ret;
-//	t_grid		*grid;
+	if (ft_isdigit(c))
+		return (1);
+	if (c >= 'A' && c <= 'F')
+		return (1);
+	return (0);
+}
 
-	
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		exit(ft_error("opening file."));
-	while ((ret = get_next_line(fd, &line)) > 0)
+int			is_valid_color(char *str)
+{
+	int		i;
+
+	if (*(str++) != '0')
+		return (0);
+	if (*(str++) != 'x')
+		return (0);
+	i = 0;
+	while (i < 8)
 	{
-
+		if (!is_hex(str[i]))
+			return (0);
+		i++;
 	}
-	close(fd);
-	if (ret < 0)
-		exit(ft_error("reading from file."));
-	//check_grid
-	//return grid if validi
-	return (NULL); //
+	return (1);
 }

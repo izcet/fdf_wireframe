@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 18:16:33 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/24 13:31:53 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/24 20:09:21 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,17 @@ int		my_key_funct(int keycode, void *param)
 int		main(int argc, char **argv)
 {
 	s_data	*data;
+	t_grid	*grid;
 
 	if (argc != 2) // modify to also allow colors as input parameters
 		return (ft_usage(argv[0], " <filename>"));
+	grid = init_grid();
+	if (!grid)
+		return (ft_error("allocating space for the grid."));
+	if (set_dimensions(argv[1], grid))
+		return (1);
 
+	//read file into struct
 	data = init_window(400, 400, "test window");
 	if (!data)
 		return (0);
