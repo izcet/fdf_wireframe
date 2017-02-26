@@ -6,13 +6,13 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 13:31:41 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/24 13:31:49 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/25 22:25:59 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-static s_data	*werr(char *msg, void *ptr1, void *ptr2, void *ptr3)
+static t_data	*werr(char *msg, void *ptr1, void *ptr2, void *ptr3)
 {
 	ft_error(msg);
 	if (ptr1)
@@ -24,14 +24,14 @@ static s_data	*werr(char *msg, void *ptr1, void *ptr2, void *ptr3)
 	if (ptr3)
 		free(ptr3);
 	ptr3 = NULL;
-	return ((s_data*)NULL);
+	return ((t_data*)NULL);
 }
 
-s_data			*init_window(int width, int height, char *title)
+t_data			*init_window(int width, int height, char *title)
 {
-	s_data	*d;
+	t_data	*d;
 
-	d = (s_data*)malloc(sizeof(s_data));
+	d = (t_data*)malloc(sizeof(t_data));
 	if (!d)
 		return (werr("allocating the struct pointer.", 0, 0, 0));
 	ft_bzero(d, sizeof(d));

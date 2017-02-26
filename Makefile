@@ -6,7 +6,7 @@
 #    By: irhett <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/02/25 01:13:12 by irhett           ###   ########.fr        #
+#    Updated: 2017/02/26 14:52:55 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ FLAGS		=	$(CFLAGS) $(GFLAGS)
 
 SRC_DIR		= 	src
 SRC_FILE	=	main.c init_window.c close_win.c read_file.c set_dimensions.c \
-				grid.c is_valid_color.c grid_error.c read_grid.c set_color.c \
+				is_valid_color.c grid_error.c read_grid.c set_color.c \
+				str_to_color.c key_pressed.c init_grid.c 
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
 

@@ -5,33 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 22:46:51 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/25 01:30:37 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/25 21:38:58 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/26 01:53:09 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
-
-#define STR *(str++)
-#define SET += value_of(STR)
-
-static int		value_of(char c)
+unsigned int	set_color_from_chars(char a, char r, char g, char b)
 {
-	if (ft_isdigit(c))
-		return (c - 48);
-	return (c - 55);
+	unsigned int	color;
+
+	color = 0;
+	color += (unsigned char)b;
+	color += ((unsigned char)g * 256);
+	color += ((unsigned char)r * 256 * 256);
+	color += ((unsigned char)a * 256 * 256 * 256);
+	return (color);
 }
 
-int				set_color(char *str, t_point point)
+unsigned int	set_color(t_color *c)
 {
-	point.color = (t_color*)malloc(sizeof(t_color));
-	ft_bzero(point.color, sizeof(t_color));
-	str += 3;
-	(*point.color).r SET * 16;
-	(*point.color).r SET;
-	(*point.color).g SET * 16;
-	(*point.color).g SET;
-	(*point.color).b SET * 16;
-	(*point.color).b SET;
-	return (9);
+	return (set_color_from_chars((*c).a, (*c).r, (*c).g, (*c).b));
 }

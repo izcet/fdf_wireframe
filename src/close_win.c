@@ -6,13 +6,13 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 14:29:30 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/24 14:30:36 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/26 14:47:33 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-void	close_win(s_data *window)
+void	close_win(t_data *window)
 {
 	// free window data
 	// free window
