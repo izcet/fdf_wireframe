@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 16:58:23 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/26 17:13:21 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/27 01:51:37 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ static void		row_error(t_grid *grid, int row, int col)
 
 static void		init_z_range(t_grid *grid, int val)
 {
-	(*grid).z_high = val;
-	(*grid).z_low = val;
+	(*grid).z_max = val;
+	(*grid).z_min = val;
 }
 
 static void		read_row_data(int row, int col, char *line, t_grid *grid)
@@ -48,10 +48,10 @@ static void		read_row_data(int row, int col, char *line, t_grid *grid)
 			init_z_range(grid, (*grid).p[row][col].z);
 		else
 		{
-			if ((*grid).p[row][col].z > (*grid).z_high)
-				(*grid).z_high = (*grid).p[row][col].z;
-			if ((*grid).p[row][col].z < (*grid).z_low)
-				(*grid).z_low = (*grid).p[row][col].z;
+			if ((*grid).p[row][col].z > (*grid).z_max)
+				(*grid).z_max = (*grid).p[row][col].z;
+			if ((*grid).p[row][col].z < (*grid).z_min)
+				(*grid).z_min = (*grid).p[row][col].z;
 		}
 		while (ft_isdigit(line[i]) || line[i] == '-')
 			i++;

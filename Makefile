@@ -6,7 +6,7 @@
 #    By: irhett <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/02/26 16:52:51 by irhett           ###   ########.fr        #
+#    Updated: 2017/02/27 02:44:11 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,10 @@ GFLAGS		=	-L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 FLAGS		=	$(CFLAGS) $(GFLAGS)
 
 SRC_DIR		= 	src
-SRC_FILE	=	main.c init_window.c str_to_color.c set_dimensions.c \
-				is_valid_color.c grid_error.c set_color.c init_grid.c \
-				key_pressed.c print_row.c read_file_into_grid.c close_win.c 
-
+SRC_FILE	=	close_win.c free_grid.c grid_error.c init_data.c init_grid.c \
+				init_window.c is_valid_color.c key_pressed.c main.c \
+				print_row.c print_grid.c read_file_into_grid.c set_color.c \
+				is_valid_file.c str_to_color.c free_win.c draw_line.c
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
 
 OBJ_DIR		=	obj

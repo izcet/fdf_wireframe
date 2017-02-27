@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid.c                                             :+:      :+:    :+:   */
+/*   print_grid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 13:19:04 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 01:53:16 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/27 01:35:00 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/27 03:26:32 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-t_grid	*init_grid(void)
+void	print_grid(t_grid *grid)
 {
-	t_grid	*new;
+	int		i;
 
-	new = (t_grid*)malloc(sizeof(t_grid));
-	if (!new)
-		return (NULL);
-	ft_bzero(new, sizeof(*new));
-	return (new);
+	i = 0;
+	ft_putendl(ft_itoa((*grid).width));
+	ft_putendl(ft_itoa((*grid).length));
+	while (i < (*grid).length)
+		print_row(i++, grid);
 }

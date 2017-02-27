@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 18:16:33 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/26 18:58:10 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/27 03:25:35 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,30 @@ int		main(int argc, char **argv)
 	grid = init_grid();
 	if (!grid)
 		return (ft_error("allocating space for the grid."));
-	if (set_dimensions(argv[1], grid))
+	if (!is_valid_file(argv[1], grid))
 		return (1);
 	read_file_into_grid(argv[1], grid);
-	/*ft_putendl(ft_itoa((*grid).width));
-	ft_putendl(ft_itoa((*grid).length));
-	int i = 0;
-	while (i < (*grid).length)
-		print_row(i++, grid);*/
-
-	// fix up beyond this point. data structure should contain window structure
-	data = init_window(400, 400, "test window");
+	print_grid(grid);
+	data = init_data(argv[1], grid, NULL);
 	if (!data)
 		return (0);
-	(*data).grid = grid;
-	unsigned char x = 0;
+	t_xy *a = malloc(sizeof(t_xy));
+	ft_bzero(a, sizeof(t_xy));
+	t_xy *b = malloc(sizeof(t_xy));
+	ft_bzero(b, sizeof(t_xy));
+	t_color *c = malloc(sizeof(t_color));
+	ft_bzero(c, sizeof(t_color));
+
+
+	(*a).x = 400;
+	(*a).y = 100;
+	(*b).x = 300;
+	(*b).y = 500;
+	(*c).r = 200;
+	(*c).g = 200;
+
+	draw_line(b, a, c, data);
+	/*unsigned char x = 0;
 	while (x < 255)
 	{
 		unsigned char y = 0;
@@ -52,8 +61,8 @@ int		main(int argc, char **argv)
 			y++;
 		}
 		x++;
-	}
-	mlx_key_hook((*data).win, key_pressed, data);
+	}*/
+	mlx_key_hook((*(*data).win).ptr, key_pressed, data);
 	mlx_loop((*data).mlx);
 	(void)argc;
 	(void)argv;

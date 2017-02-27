@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid.c                                             :+:      :+:    :+:   */
+/*   free_win.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 13:19:04 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 01:53:16 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/27 01:42:57 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/27 01:45:20 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-t_grid	*init_grid(void)
+void		free_win(t_win *win)
 {
-	t_grid	*new;
-
-	new = (t_grid*)malloc(sizeof(t_grid));
-	if (!new)
-		return (NULL);
-	ft_bzero(new, sizeof(*new));
-	return (new);
+	free((*win).title);
+	free(win);
 }

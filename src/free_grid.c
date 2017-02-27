@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid.c                                             :+:      :+:    :+:   */
+/*   free_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 13:19:04 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 01:53:16 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/27 01:32:35 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/27 01:58:22 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-t_grid	*init_grid(void)
-{
-	t_grid	*new;
+#define GR (*grid)
 
-	new = (t_grid*)malloc(sizeof(t_grid));
-	if (!new)
-		return (NULL);
-	ft_bzero(new, sizeof(*new));
-	return (new);
+void		free_grid(t_grid *grid)
+{
+	int		row;
+	int		col;
+
+	row = 0;
+	while (row < GR.length)
+	{
+		col = 0;
+		while (col < GR.width)
+		{
+			if (GR.p[row][col].color)
+				free(GR.p[row][col].color);
+			col++;
+		}
+		free(GR.p[row]);
+		row++;
+	}
+	free(GR.p);
+	free(grid);
 }
