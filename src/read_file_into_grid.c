@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_grid.c                                        :+:      :+:    :+:   */
+/*   read_file_into_grid.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 20:13:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/26 14:57:35 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/26 16:58:23 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/26 17:13:21 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,50 +23,68 @@ static void		row_error(t_grid *grid, int row, int col)
 		}
 		free((*grid).p[row]);
 		col = (*grid).width;
-	}	
+	}
 	free((*grid).p);
 	exit(grid_error(grid, "initializing row in point array."));
 }
 
-void			read_grid(char *file, t_grid *grid)
+static void		init_z_range(t_grid *grid, int val)
 {
-	int		fd;
-	int		row;
-	int		col;
+	(*grid).z_high = val;
+	(*grid).z_low = val;
+}
+
+static void		read_row_data(int row, int col, char *line, t_grid *grid)
+{
+	int		i;
+
+	i = 0;
+	while (++col < (*grid).width)
+	{
+		while (line[i] == ' ')
+			i++;
+		(*grid).p[row][col].z = ft_atoi(&(line[i]));
+		if (row + col == 0)
+			init_z_range(grid, (*grid).p[row][col].z);
+		else
+		{
+			if ((*grid).p[row][col].z > (*grid).z_high)
+				(*grid).z_high = (*grid).p[row][col].z;
+			if ((*grid).p[row][col].z < (*grid).z_low)
+				(*grid).z_low = (*grid).p[row][col].z;
+		}
+		while (ft_isdigit(line[i]) || line[i] == '-')
+			i++;
+		if (line[i] == ',')
+			i += str_to_color(&(line[i]), (*grid).p[row][col]);
+	}
+	free(line);
+}
+
+void			read_file_into_grid(char *file, t_grid *grid)
+{
 	char	*line;
 	int		ret;
-	int		i;
+	int		fd;
+	int		row;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		exit(grid_error(grid, "reopening file for data read."));
-	(*grid).p = (t_point**)malloc(sizeof(t_point*) * (*grid).length);
+	(*grid).p = (t_zc**)malloc(sizeof(t_zc*) * (*grid).length);
 	if (!(*grid).p)
 		exit(grid_error(grid, "initializing greater point array."));
-	row = 0;
-	while (row < (*grid).length)
+	row = -1;
+	while (++row < (*grid).length)
 	{
-		col = 0;
-		(*grid).p[row] = (t_point*)malloc(sizeof(t_point) * (*grid).width);
+		(*grid).p[row] = (t_zc*)malloc(sizeof(t_zc) * (*grid).width);
 		if (!(*grid).p[row])
 			row_error(grid, row, 0);
-		ft_bzero((*grid).p[row], sizeof(t_point) * (*grid).width); // ??
+		ft_bzero((*grid).p[row], sizeof(t_zc) * (*grid).width);
 		ret = get_next_line(fd, &line);
 		if (ret <= 0)
 			row_error(grid, row + 1, 0);
-		i = 0;
-		while (col < (*grid).width)
-		{
-			(*grid).p[row][col].x = col;
-			(*grid).p[row][col].y = row;
-			(*grid).p[row][col].z = ft_atoi(&(line[i]));
-			while (ft_isdigit(line[i]) || line[i] == '-')
-				i++;
-			if (line[i] == ',')
-				i += str_to_color(&(line[i]), (*grid).p[row][col]);
-			col++;
-		}
-		free(line);
-		row++;
+		read_row_data(row, -1, line, grid);
 	}
+	close(fd);
 }

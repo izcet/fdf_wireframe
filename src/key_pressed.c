@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 22:17:59 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/26 00:31:43 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/26 18:48:34 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #define KEY_Q 12
 #define KEY_E 14
 
-/* 
+/*
  * rotate around x axis, rolling away and towards, respectively
  */
 #define KEY_R 15
@@ -51,16 +51,16 @@
  */
 #define KEY_ESC 53
 
-
 int		key_pressed(int keycode, void *param)
-{	
-	t_data	*data;
+{
 	char	*str;
 
 	str = ft_itoa(keycode);
 	ft_putstr("Keycode is ");
 	ft_putendl(str);
 	free(str);
-	data = (t_data*)param;
+
+	if (keycode == KEY_ESC)
+		close_win(param);
 	return (0);
 }

@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   print_row.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 13:06:20 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/24 14:32:22 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/26 15:40:47 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/26 16:15:28 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-
-
-t_grid	*read_file(char *filename)
+void	print_row(int row, t_grid *grid)
 {
-	int			fd;
-	char		*line;
-	int			ret;
-//	t_grid		*grid;
+	int		i;
+	char	*str;
 
-	
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		exit(ft_error("opening file."));
-	while ((ret = get_next_line(fd, &line)) > 0)
+	i = 0;
+	while (i < (*grid).width)
 	{
-
+		str = ft_itoa((*grid).p[row][i].z);
+		ft_putstr(str);
+		ft_putchar('\t');
+		free(str);
+		i++;
 	}
-	close(fd);
-	if (ret < 0)
-		exit(ft_error("reading from file."));
-	//check_grid
-	//return grid if validi
-	return (NULL); //
+	ft_putchar('\n');
 }

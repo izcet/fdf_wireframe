@@ -6,11 +6,12 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 21:38:58 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/26 01:53:09 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/26 16:21:33 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
+
 unsigned int	set_color_from_chars(char a, char r, char g, char b)
 {
 	unsigned int	color;

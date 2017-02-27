@@ -6,17 +6,16 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 15:27:42 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/25 01:33:01 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/26 16:21:04 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-static int	get_num(char *str)
-{
-	int		num;
+#define ORNOT else return (-1)
 
-	num = 0;
+static int	get_num(char *str, int num)
+{
 	if (!ft_isdigit(*str) && (*str != '-'))
 		return (-1);
 	while (*str)
@@ -31,12 +30,10 @@ static int	get_num(char *str)
 			{
 				if (is_valid_color((++str)))
 					str += 8;
-				else
-					return (-1);
+				ORNOT;
 			}
 		}
-		else
-			return (-1);
+		ORNOT;
 		num++;
 		if (*str && !ft_isspace(*str))
 			return (-1);
@@ -46,7 +43,7 @@ static int	get_num(char *str)
 	return (num);
 }
 
-static int		read_file_dimen(int fd, t_grid *grid)
+static int	read_file_dimen(int fd, t_grid *grid)
 {
 	int		ret;
 	char	*line;
@@ -55,7 +52,7 @@ static int		read_file_dimen(int fd, t_grid *grid)
 	{
 		if ((*grid).length == 0)
 		{
-			(*grid).width = get_num(line);
+			(*grid).width = get_num(line, 0);
 			free(line);
 			if ((*grid).width == -1)
 				return (grid_error(grid, "invalid file (first line)."));
@@ -63,7 +60,7 @@ static int		read_file_dimen(int fd, t_grid *grid)
 		else
 		{
 			free(line);
-			if (get_num(line) != (*grid).width)
+			if (get_num(line, 0) != (*grid).width)
 				return (grid_error(grid, "invalid file."));
 		}
 		(*grid).length++;
@@ -73,7 +70,7 @@ static int		read_file_dimen(int fd, t_grid *grid)
 	return (0);
 }
 
-int		set_dimensions(char *file, t_grid *grid)
+int			set_dimensions(char *file, t_grid *grid)
 {
 	int		fd;
 	int		ret;
