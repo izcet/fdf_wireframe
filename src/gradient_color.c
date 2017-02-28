@@ -6,12 +6,11 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 14:10:10 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 19:33:47 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/27 21:11:03 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
-#include <stdio.h>
 
 #define A (*a)
 #define B (*b)
@@ -41,6 +40,5 @@ unsigned int	gradient_color(t_color *a, t_color *b, int v, int r)
 	fr = get_char_v(A.r, B.r, v, r);
 	fg = get_char_v(A.g, B.g, v, r);
 	fb = get_char_v(A.b, B.b, v, r);
-
 	return (set_color_from_chars(fa, fr, fg, fb));
 }

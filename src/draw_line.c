@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 02:10:53 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 14:44:38 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/27 21:05:48 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,11 @@ static void		draw_bx(t_xy *p1, t_xy *p2, t_data *data)
 	n = B.x;
 	while (n <= A.x)
 	{
+		//ft_putendl("a");
 		col = gradient_color(B.color, A.color, (n - B.x), (A.x - B.x));
+		//ft_putendl("b");	
 		m = (int)(F(F(A.y - B.y) / F(A.x - B.x)) * F(n - B.x)) + B.y;
+		//ft_putendl("c");
 		mlx_pixel_put((*data).mlx, (*(*data).win).ptr, n, m, col);
 		n++;
 	}
@@ -82,12 +85,25 @@ static void		draw_by(t_xy *p1, t_xy *p2,  t_data *data)
 
 void			draw_line(t_xy *p1, t_xy *p2, t_data *data)
 {
+	//ft_putendl("dl");
 	if (A.x < B.x)
+	{
+		//ft_putendl("ax");
 		draw_ax(p1, p2, data);
+	}
 	else
+	{
+		//ft_putendl("bx");
 		draw_bx(p1, p2, data);
+	}
 	if (A.y < B.y)
+	{
+		//ft_putendl("ay");
 		draw_ay(p1, p2, data);
+	}
 	else
+	{
+		//ft_putendl("by");
 		draw_by(p1, p2, data);
+	}
 }
