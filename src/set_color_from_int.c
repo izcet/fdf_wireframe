@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_row.c                                        :+:      :+:    :+:   */
+/*   set_color_from_int.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/26 15:40:47 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 20:01:15 by irhett           ###   ########.fr       */
+/*   Created: 2017/02/27 18:26:09 by irhett            #+#    #+#             */
+/*   Updated: 2017/02/27 19:36:01 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
-#include <stdio.h>
-void	print_row(int row, t_grid *grid)
+
+t_color		*set_color_from_int(unsigned int c)
 {
-	int		i;
-	char	*str;
-	
-	i = 0;
-	//printf("%i\n", (*grid).width);
-	while (i < (*grid).width)
-	{
-		printf("%i\n", (*grid).p[row][i].z);
-		str = ft_itoa((*grid).p[row][i].z);
-		ft_putstr(str);
-		ft_putchar('\t');
-		free(str);
-		i++;
-	}
-	ft_putchar('\n');
+	t_color		*col;
+
+	col = (t_color*)malloc(sizeof(t_color));
+	if (!col)
+		return (NULL);
+	ft_bzero(col, sizeof(t_color));
+	(*col).b = (c % 256);
+	c = c / 256;
+	(*col).g = (c % 256);
+	c = c / 256;
+	(*col).r = (c % 256);
+	c = c / 256;
+	(*col).a = (c % 256);
+	return (col);
 }

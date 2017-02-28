@@ -6,7 +6,7 @@
 #    By: irhett <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/02/27 02:44:11 by irhett           ###   ########.fr        #
+#    Updated: 2017/02/27 20:01:11 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,10 @@ SRC_DIR		= 	src
 SRC_FILE	=	close_win.c free_grid.c grid_error.c init_data.c init_grid.c \
 				init_window.c is_valid_color.c key_pressed.c main.c \
 				print_row.c print_grid.c read_file_into_grid.c set_color.c \
-				is_valid_file.c str_to_color.c free_win.c draw_line.c
+				is_valid_file.c str_to_color.c free_win.c draw_line.c \
+				gradient_color.c read_colors.c set_color_from_int.c \
+				set_point_colors.c
+
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
 
 OBJ_DIR		=	obj

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 18:16:33 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 03:25:35 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/27 19:57:48 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,53 @@ int		main(int argc, char **argv)
 	t_grid	*grid;
 
 	if (argc != 2) // modify to also allow colors as input parameters
-		return (ft_usage(argv[0], " <filename>"));
+		return (ft_usage(argv[0], " <filename> [color max .... min]"));
 	grid = init_grid();
 	if (!grid)
 		return (ft_error("allocating space for the grid."));
 	if (!is_valid_file(argv[1], grid))
 		return (1);
+	ft_putendl("A");
 	read_file_into_grid(argv[1], grid);
+	ft_putendl("B");
+	//erroring somewhere between here
 	print_grid(grid);
+	ft_putendl("C");
+	
 	data = init_data(argv[1], grid, NULL);
 	if (!data)
 		return (0);
+	(*grid).cols = read_colors(argc, argv, grid);
+
+
+
+
+
+
 	t_xy *a = malloc(sizeof(t_xy));
 	ft_bzero(a, sizeof(t_xy));
+
 	t_xy *b = malloc(sizeof(t_xy));
 	ft_bzero(b, sizeof(t_xy));
-	t_color *c = malloc(sizeof(t_color));
-	ft_bzero(c, sizeof(t_color));
+	
+	t_color *ac = malloc(sizeof(t_color));
+	ft_bzero(ac, sizeof(t_color));
 
+	t_color *bc = malloc(sizeof(t_color));
+	ft_bzero(bc, sizeof(t_color));
 
-	(*a).x = 400;
-	(*a).y = 100;
-	(*b).x = 300;
+	(*b).x = 500;
 	(*b).y = 500;
-	(*c).r = 200;
-	(*c).g = 200;
+	(*b).color = bc;
 
-	draw_line(b, a, c, data);
+	(*ac).r = 200;
+	//(*ac).g = 100;
+	//(*ac).b = 100;
+
+	//(*bc).r = 100;
+	(*bc).b = 250;
+
+	draw_line(b, a, data);
 	/*unsigned char x = 0;
 	while (x < 255)
 	{
@@ -62,6 +82,11 @@ int		main(int argc, char **argv)
 		}
 		x++;
 	}*/
+
+
+
+
+
 	mlx_key_hook((*(*data).win).ptr, key_pressed, data);
 	mlx_loop((*data).mlx);
 	(void)argc;
