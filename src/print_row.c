@@ -6,16 +6,17 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 15:40:47 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 20:15:20 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/28 11:20:41 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
+
 void	print_row(int row, t_grid *grid)
 {
 	int		i;
 	char	*str;
-	
+
 	i = 0;
 	while (i < (*grid).width)
 	{

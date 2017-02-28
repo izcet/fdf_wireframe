@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 18:15:43 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 21:24:14 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/27 21:35:54 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static int			valid_args(int argc, char **argv)
 	while (i < argc)
 	{
 		if (!is_valid_color(argv[i]))
+		{
+			ft_putendl("Invalid color arguments.");
 			return (0);
+		}
 		i++;
 	}
 	return (1);
@@ -51,7 +54,6 @@ t_color				**read_colors(int argc, char **argv, t_grid *grid)
 	i = 2;
 	if (!valid_args(argc, argv))
 	{
-		ft_putendl("Invalid color arguments");
 		return (init_default(grid));
 	}
 	c = (t_color**)malloc(sizeof(t_color*) * (argc - i));

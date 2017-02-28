@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 20:21:04 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/24 20:22:58 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/27 21:58:59 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 int		grid_error(t_grid *grid, char *msg)
 {
 	free(grid);
-	return (ft_error(msg));
+	return (ft_error(msg) && 0);
 }

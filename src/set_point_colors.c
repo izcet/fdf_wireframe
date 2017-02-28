@@ -6,18 +6,19 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 18:59:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 21:29:35 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/28 11:16:21 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
+#include <stdio.h>
 
 #define G (*grid)
 
 static t_color	*get_color_from_spectrum(t_grid *grid, int row, int col)
 {
-	int				range;
-	int				val;
+	float			range;
+	float			val;
 	int				i;
 	int				off;
 	unsigned int	ret;
@@ -27,10 +28,10 @@ static t_color	*get_color_from_spectrum(t_grid *grid, int row, int col)
 	if (G.p[row][col].z == G.z_max)
 		return (set_color_from_int(set_color(G.cols[G.num_cols - 1])));
 	range = G.z_max - G.z_min;
-	off = range / (G.num_cols - 1);
+	off = (float)(range / (float)(G.num_cols - 1));
 	val = G.p[row][col].z - G.z_min;
 	i = 1;
-	while (i < G.num_cols && (val > (i * off)))
+	while (i < G.num_cols && (val >= (i * off)))
 		i++;
 	ret = gradient_color(G.cols[i - 1], G.cols[i], val - (i * off), off);
 	return (set_color_from_int(ret));

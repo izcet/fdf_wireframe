@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 16:58:23 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 19:55:52 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/28 11:16:35 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ static void		init_z_range(t_grid *grid, int val)
 	(*grid).z_min = val;
 }
 
-static int		point_set_color(char *str, t_zc point)
+static int		point_set_color(char *str, t_grid *grid, int row, int col)
 {
-	point.color = str_to_color(&(str[1]));
+	(*grid).p[row][col].color = str_to_color(&(str[1]));
 	return (9);
 }
 
 static void		read_row_data(int row, int col, char *line, t_grid *grid)
 {
 	int		i;
-	
+
 	i = 0;
 	while (++col < (*grid).width)
 	{
@@ -62,7 +62,7 @@ static void		read_row_data(int row, int col, char *line, t_grid *grid)
 		while (ft_isdigit(line[i]) || line[i] == '-')
 			i++;
 		if (line[i] == ',')
-			i += point_set_color(&(line[i]), (*grid).p[row][col]);
+			i += point_set_color(&(line[i]), grid, row, col);
 	}
 	free(line);
 }

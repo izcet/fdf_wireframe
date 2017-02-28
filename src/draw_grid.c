@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 20:23:04 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 21:11:40 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/28 11:25:56 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,37 +28,30 @@ static t_xy		*get_window_point(int row, int col, t_zc p, t_data *data)
 	return (point);
 }
 
-void			draw_grid(t_grid *grid, t_data *data)
+void			draw_grid(t_grid *grid, t_data *data, int row, int col)
 {
-	int		row;
-	int		col;
 	t_xy	*p1;
 	t_xy	*p2;
 
-	row = 0;
-	while (row < G.length)
+	while (++row < G.length)
 	{
-		col = 0;
-		while (col < G.width)
+		col = -1;
+		while (++col < G.width)
 		{
+			p1 = get_window_point(row, col, G.p[row][col], data);
 			if (row < G.length - 1)
 			{
-				p1 = get_window_point(row, col, G.p[row][col], data);
 				p2 = get_window_point(row + 1, col, G.p[row + 1][col], data);
 				draw_line(p1, p2, data);
-				free(p1);
 				free(p2);
 			}
 			if (col < G.width - 1)
 			{
-				p1 = get_window_point(row, col, G.p[row][col], data);
 				p2 = get_window_point(row, col + 1, G.p[row][col + 1], data);
 				draw_line(p1, p2, data);
-				free(p1);
 				free(p2);
 			}
-			col++;
+			free(p1);
 		}
-		row++;
 	}
-}	
+}

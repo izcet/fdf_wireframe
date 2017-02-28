@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 22:42:11 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 20:44:55 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/28 11:27:36 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,6 @@ void					draw_line(t_xy *a, t_xy *b, t_data *d);
 t_color					**read_colors(int argc, char **argv, t_grid *grid);
 t_color					*set_color_from_int(unsigned int c);
 void					set_point_colors(t_grid *grid);
-void					draw_grid(t_grid *grid, t_data *data);
+void					draw_grid(t_grid *grid, t_data *data, int row, int col);
 void					set_offset(t_grid *grid, t_data *data);
 #endif

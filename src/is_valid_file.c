@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 02:00:40 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 02:04:52 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/28 11:19:16 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 static int	get_num(char *str, int num)
 {
-	if (!ft_isdigit(*str) && (*str != '-'))
-		return (-1);
+	while (ft_isspace(*str) && *str)
+		str++;
 	while (*str)
 	{
 		if (*str == '-')
@@ -53,6 +53,7 @@ static int	read_file_dimen(int fd, t_grid *grid)
 		if ((*grid).length == 0)
 		{
 			(*grid).width = get_num(line, 0);
+			ft_putendl(ft_itoa((*grid).width));
 			free(line);
 			if ((*grid).width <= 0)
 				return (grid_error(grid, "invalid file (first line).") && 0);

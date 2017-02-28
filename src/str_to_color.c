@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 21:37:41 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 19:57:14 by irhett           ###   ########.fr       */
+/*   Updated: 2017/02/28 11:20:09 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int		value_of(char c)
 
 t_color			*str_to_color(char *str)
 {
-	t_color 	*c;
+	t_color		*c;
 
 	c = (t_color*)malloc(sizeof(t_color));
 	if (!c)
