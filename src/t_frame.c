@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/02 12:26:28 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/02 12:44:17 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/03 23:01:25 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/03 23:01:38 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,16 @@ t_frame	*init_frame(void)
 	return (frame);
 }
 
-void	del_frame(t_frame *frame, int p_num_rows, int p_num_cols)
+void	del_frame(t_frame *frame, int len, int wid)
 {
 	if (frame)
 	{
 		if (F.p)
-			del_xyzcp_2d_arr(F.p, p_num_rows, p_num_cols);
+			del_xyzcp_2d_arr(F.p, len, wid);
 		if (F.pos)
 			del_xyzcp(F.pos);
 		if (F.ang)
 			del_xyzcp(F.ang);
-		ft_bzero(frame, sizeof(t_frame));
 		free(frame);
 		frame = NULL;
 	}

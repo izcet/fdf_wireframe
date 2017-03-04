@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 12:12:59 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 22:00:31 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/03 22:59:12 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,10 @@
 
 void	del_data(t_data *data)
 {
-	int		i;
-
 	if (data)
 	{
 		if (D.win)
-		{
-			i = 0;
-			while (D.win[i])
-				del_win(D.win[i++]);
-			free(D.win);
-		}
+			del_win_1d_arr(D.win, D.num_win);
 		if (D.map)
 			del_map(D.map);
 		if (D.frame)

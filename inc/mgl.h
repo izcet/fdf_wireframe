@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 22:42:11 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 21:25:27 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/03 22:57:17 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,12 @@ typedef struct			s_data
 	int					len; // for the point arrays
 	int					z_min;
 	int					z_max;
-	t_win				**win; // NULL terminated array of windows
+	int					num_win;
+	t_win				**win; //array[num_win] of windows
 	t_map				*map;
 	t_frame				*frame;
-	int					num_col
-	t_col				**col; // array[num_col] of colors
+	int					num_col;
+	t_col				**col; // array[num_col] of colors // [0] is low
 	void				*mlx;
 	// what other structures and data do I want to pass around the whole fdf?
 
@@ -102,6 +103,7 @@ t_zcp					**init_zcp_1d_arr(int wid);
 t_zcp					***init_zcp_2d_arr(int len, int wid);
 t_xyzcp					**init_xyzcp_1d_arr(int wid);
 t_xyzcp					***init_xyzcp_2d_arr(int len, int wid);
+t_col					**init_col_1d_arr(int size);
 
 void					del_col(t_col *c);
 void					del_xyp(t_xyp *p);
@@ -110,11 +112,12 @@ void					del_xyzcp(t_xyzcp *p);
 void					del_map(t_map *grid);
 void					del_frame(t_frame *grid, int p_rows, int p_cols);
 void					del_win(t_win *win, void *mlx); // see file
-void					del_data(t_data *data);
+void					del_data(t_data *data); // see file
 void					del_zcp_1d_arr(t_zcp **p, int wid);
 void					del_zcp_2d_arr(t_zcp ***p, int len, int wid);
 void					del_xyzcp_1d_arr(t_xyzcp **p, int wid);
 void					del_xyzcp_2d_arr(t_xyzcp ***p, int len, int wid);
+void					del_col_1d_arr(t_col **c, int size);
 
 t_col					*make_col_from_chars(char a, char r, char g, char b);
 t_col					*make_col_from_int(unsigned int num); // 0x00AA11FF
@@ -134,6 +137,9 @@ void					set_z_range(t_data *data);
 void					set_data_xy(t_data *data, t_xyp *p);
 void					set_point_colors(t_data *data, int argc, char **argv);
 int						populate_map(t_data *data, char *file);
+
+t_col					*get_color_from_range(t_data *data, int row, int col);
+// recode				this ^^^
 
 
 

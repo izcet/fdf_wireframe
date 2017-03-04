@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 20:52:46 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 21:06:16 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/03 22:48:43 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 #define D (*data)
 
-void		set_z_range(t_data *data)
+static int		fill_point_colors(t_data *data)
 {
 	int		row;
 	int		col;
+	t_col	*c;
 
 	row = -1;
 	while (++row < D.len)
@@ -25,28 +26,24 @@ void		set_z_range(t_data *data)
 		col = -1;
 		while (++col < D.wid)
 		{
-			if (row + col == 0)
+			if (!D.map[row][col].c)
 			{
-				D.z_min = D.map[row][col].z;
-				d.z_max = D.map[row][col].z;
-			}
-			else
-			{
-				if (D.z_min > D.map[row][col].z)
-					D.z_min = D.map[row][col].z;
-				if (D.z_max < D.map[row][col].z)
-					D.z_max = D.map[row][col].z;
+				c = get_color_from_range(data, row, col);
+				if (c)
+					D.map[row][col].c = c;
+				else
+					return (1);
 			}
 		}
 	}
+	return (0);
 }
 
-void			set_point_colors(t_data *data, int argc, char **argv)
+int			set_point_colors(t_data *data, int argc, char **argv)
 {
 	set_z_range(data);
-	D.col = make_color_1d_arr(int argc, char **argv);
-	//read range
-	//check colors from stdin
-
-	//setting point colors requires color arr and range
+	D.col = make_color_1d_arr(data, argc, argv);
+	if (!D.col)
+		return (1);
+	return (fill_point_colors(data));
 }

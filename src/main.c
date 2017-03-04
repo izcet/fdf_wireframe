@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 18:16:33 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 21:18:47 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/03 22:06:38 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int		main(int argc, char **argv)
 	set_data_xy(data, dimen);
 	if (populate_map(data, argv[1]) != 0)
 		return (cleanup(data, 1));
-	set_data_colors(data, argc, argv);
+	if (set_data_colors(data, argc, argv) != 0)
+		return (cleanup(data, 1));
 
 	print_grid(grid); ///
 	data = init_data(argv[1], grid, NULL);
