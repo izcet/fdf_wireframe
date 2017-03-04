@@ -1,58 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_xyzcp_1d_arr.c                                   :+:      :+:    :+:   */
+/*   t_col_1d_arr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/03 21:27:56 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 22:00:50 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/03 21:09:32 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/03 22:02:01 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-void		del_xyzcp_1d_arr(t_xyzcp **p, int wid)
+void	del_col_1d_arr(t_col **c, int num_cols)
 {
 	int		i;
 
-	if (p)
+	if (c)
 	{
 		i = -1;
-		while (++i < wid)
+		while (++i < num_cols)
 		{
-			if (p[i])
-				del_xyzcp(p[i]);
+			if (c[i])
+				del_col(c[i]);
 			else
-				ft_error("Point in del_xyzcp_1d_arr() is NULL");
+				ft_error("Color Pointer in del_col_1d_arr() is NULL");
 		}
-		free(p);
-		p = NULL;
+		free(c);
+		c = NULL;
 	}
 	else
-		ft_error("Passed NULL to del_xyzcp_2d_arr()");
+		ft_error("NULL passed to del_col_1d_arr()");
 }
 
-t_xyzcp		**init_xyzcp_1d_arr(int wid)
+t_col	**init_col_1d_arr(int size)
 {
-	t_xyzcp	**p;
+	t_col	**c;
 	int		i;
 
-	p = (t_xyzcp**)malloc(sizeof(t_xyzcp*) * wid);
-	if (!p)
+	c = (t_col**)malloc(sizeof(t_col*) * size);
+	if (!c)
 	{
-		ft_error("Unable to allocate memory for t_xyzcp**");
+		ft_error("Unable to allocate memory for t_col**");
 		return (NULL);
 	}
 	i = -1;
-	while (++i < wid)
+	while (++i < size)
 	{
-		p[i] = init_xyzcp();
-		if (!p[i])
+		c[i] = init_col();
+		if (!c[i])
 		{
-			del_xyzcp_1d_arr(p, i);
+			del_col_1d_arr(c, i);
 			return (NULL);
 		}
 	}
-	return (p);
+	return (c);
+}
+
+t_col	**make_col_1d_arr(t_data *data, int argc, char **argv)
+{
+
+
 }

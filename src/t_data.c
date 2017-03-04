@@ -6,26 +6,13 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 12:12:59 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/02 12:26:26 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/03 22:00:31 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
+
 #define D (*data) 
-
-t_data	*init_data(void)
-{
-	t_data	*data;
-
-	data = (t_data*)malloc(sizeof(t_data));
-	if (!data)
-	{
-		ft_error("Unable to allocate memory for t_data");
-		return (NULL);
-	}
-	ft_bzero(data, sizeof(t_data));
-	return (data);
-}
 
 void	del_data(t_data *data)
 {
@@ -45,12 +32,7 @@ void	del_data(t_data *data)
 		if (D.frame)
 			del_frame(D.frame);
 		if (D.col)
-		{
-			i = 0;
-			while (D.col[i])
-				del_color(D.col[i++]);
-			free(D.col);
-		}
+			del_col_1d_arr(D.col, D.num_col);
 		free(D.mlx);
 		ft_bzero(data, sizeof(t_data));
 		free(data);
@@ -58,4 +40,18 @@ void	del_data(t_data *data)
 	}
 	else
 		ft_error("Passed NULL to del_data()");
+}
+
+t_data	*init_data(void)
+{
+	t_data	*data;
+
+	data = (t_data*)malloc(sizeof(t_data));
+	if (!data)
+	{
+		ft_error("Unable to allocate memory for t_data");
+		return (NULL);
+	}
+	ft_bzero(data, sizeof(t_data));
+	return (data);
 }
