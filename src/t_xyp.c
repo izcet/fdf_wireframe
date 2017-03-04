@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid.c                                             :+:      :+:    :+:   */
+/*   init_xyp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 13:19:04 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 01:53:16 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/02 11:46:28 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/02 13:17:05 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-t_grid	*init_grid(void)
+t_xyp	*init_xyp(void)
 {
-	t_grid	*new;
+	t_xyp	*p;
 
-	new = (t_grid*)malloc(sizeof(t_grid));
-	if (!new)
+	p = (t_xyp*)malloc(sizeof(t_xyp));
+	if (!p)
+	{
+		ft_error("Unable to allocate memory for t_xyp");
 		return (NULL);
-	ft_bzero(new, sizeof(*new));
-	return (new);
+	}
+	ft_bzero(p, sizeof(t_xyp));
+	return (p);
+}
+
+void	del_xyp(t_xyp *p)
+{
+	if (p)
+	{
+		ft_bzero(p, sizeof(t_xyp));
+		free(p);
+		p = NULL;
+	}
+	else
+		ft_error("Passed NULL to del_xyp()");
 }

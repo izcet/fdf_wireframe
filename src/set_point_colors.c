@@ -5,53 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/27 18:59:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/28 11:16:21 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/03 20:52:46 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/03 21:06:16 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
-#include <stdio.h>
 
-#define G (*grid)
+#define D (*data)
 
-static t_color	*get_color_from_spectrum(t_grid *grid, int row, int col)
-{
-	float			range;
-	float			val;
-	int				i;
-	int				off;
-	unsigned int	ret;
-
-	if (G.num_cols == 1)
-		return (set_color_from_int(set_color(G.cols[0])));
-	if (G.p[row][col].z == G.z_max)
-		return (set_color_from_int(set_color(G.cols[G.num_cols - 1])));
-	range = G.z_max - G.z_min;
-	off = (float)(range / (float)(G.num_cols - 1));
-	val = G.p[row][col].z - G.z_min;
-	i = 1;
-	while (i < G.num_cols && (val >= (i * off)))
-		i++;
-	ret = gradient_color(G.cols[i - 1], G.cols[i], val - (i * off), off);
-	return (set_color_from_int(ret));
-}
-
-void			set_point_colors(t_grid *grid)
+void		set_z_range(t_data *data)
 {
 	int		row;
 	int		col;
 
-	row = 0;
-	while (row < G.length)
+	row = -1;
+	while (++row < D.len)
 	{
-		col = 0;
-		while (col < G.width)
+		col = -1;
+		while (++col < D.wid)
 		{
-			if (!G.p[row][col].color)
-				G.p[row][col].color = get_color_from_spectrum(grid, row, col);
-			col++;
+			if (row + col == 0)
+			{
+				D.z_min = D.map[row][col].z;
+				d.z_max = D.map[row][col].z;
+			}
+			else
+			{
+				if (D.z_min > D.map[row][col].z)
+					D.z_min = D.map[row][col].z;
+				if (D.z_max < D.map[row][col].z)
+					D.z_max = D.map[row][col].z;
+			}
 		}
-		row++;
 	}
+}
+
+void			set_point_colors(t_data *data, int argc, char **argv)
+{
+	set_z_range(data);
+	D.col = make_color_1d_arr(int argc, char **argv);
+	//read range
+	//check colors from stdin
+
+	//setting point colors requires color arr and range
 }

@@ -1,36 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_window.c                                      :+:      :+:    :+:   */
+/*   t_zcp.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/24 13:31:41 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 01:49:16 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/02 13:19:37 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/02 13:20:21 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-t_win			*init_window(char *title, void *mlx)
+t_zcp	*init_zcp(void)
 {
-	t_win	*win;
+	t_zcp	*p;
 
-	win = (t_win*)malloc(sizeof(t_win));
-	if (!win)
-		return (NULL);
-	ft_bzero(win, sizeof(t_win));
-	(*win).ptr = mlx_new_window(mlx, WINDOW_SIZE, WINDOW_SIZE, title);
-	if (!(*win).ptr)
+	p = (t_zcp*)malloc(sizeof(t_zcp));
+	if (!p)
 	{
-		free(win);
+		ft_error("Unable to allocate memory for t_zcp");
 		return (NULL);
 	}
-	(*win).title = gnl_concat(title, "", 0, 0);
-	if (!(*win).title)
+	ft_bzero(p, sizeof(t_zcp));
+	return (p);
+}
+
+void	del_zcp(t_zcp *p)
+{
+	if (p)
 	{
-		free(win);
-		return (NULL);
+		if ((*p).c)
+			del_color((*p).c);
+		ft_bzero(p, sizeof(t_zcp));
+		free(p);
+		p = NULL;
 	}
-	return (win);
+	else
+		ft_error("Passed NULL to del_zcp()");
 }

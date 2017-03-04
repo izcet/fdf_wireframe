@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   make_col_from_int.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 21:17:29 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/02 22:23:44 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/02 14:13:27 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/02 14:13:33 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "mgl.h"
 
-int		ft_error(char *str)
+t_col	*make_col_from_int(unsigned int num)
 {
-	ft_putstr_fd("Error: ", 2);
-	ft_putendl_fd(str, 2);
-	return (1);
+	t_col	*col;
+
+	col = init_color();
+	if (!col)
+		return (NULL);
+	(*col).b = (num % 256);
+	num = num / 256;
+	(*col).g = (num % 256);
+	num = num / 256;
+	(*col).r = (num % 256);
+	num = num / 256;
+	(*col).a = (num % 256);
+	return (col);
 }

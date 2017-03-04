@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_color.c                                        :+:      :+:    :+:   */
+/*   set_z_range.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/25 21:38:58 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/26 16:21:33 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/03 21:06:33 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/03 21:07:29 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-unsigned int	set_color_from_chars(char a, char r, char g, char b)
-{
-	unsigned int	color;
+#define D (*data)
 
-	color = 0;
-	color += (unsigned char)b;
-	color += ((unsigned char)g * 256);
-	color += ((unsigned char)r * 256 * 256);
-	color += ((unsigned char)a * 256 * 256 * 256);
-	return (color);
-}
-
-unsigned int	set_color(t_color *c)
+void		set_z_range(t_data *data)
 {
-	return (set_color_from_chars((*c).a, (*c).r, (*c).g, (*c).b));
+	int		row;
+	int		col;
+
+	row = -1;
+	while (++row < D.len)
+	{
+		col = -1;
+		while (++col < D.wid)
+		{
+			if (row + col == 0)
+			{
+				D.z_min = D.map[row][col].z;
+				d.z_max = D.map[row][col].z;
+			}
+			else
+			{
+				if (D.z_min > D.map[row][col].z)
+					D.z_min = D.map[row][col].z;
+				if (D.z_max < D.map[row][col].z)
+					D.z_max = D.map[row][col].z;
+			}
+		}
+	}
 }

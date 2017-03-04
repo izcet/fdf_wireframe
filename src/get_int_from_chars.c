@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   get_int_from_chars.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 21:17:29 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/02 22:23:44 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/02 14:13:44 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/02 14:13:56 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "mgl.h"
 
-int		ft_error(char *str)
+unsigned int	get_int_from_chars(char a, char r, char g, char b)
 {
-	ft_putstr_fd("Error: ", 2);
-	ft_putendl_fd(str, 2);
-	return (1);
+	unsigned int	color;
+
+	color = 0;
+	color += (unsigned char)b;
+	color += ((unsigned char)g * 256);
+	color += ((unsigned char)r * 256 * 256);
+	color += ((unsigned char)a * 256 * 256 * 256);
+	return (color);
 }

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 18:15:43 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 21:35:54 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/01 01:33:57 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static t_color		**init_default(t_grid *grid)
 	if (!the_colors)
 		return (NULL);
 	ft_bzero(the_colors, (sizeof(t_color*) * 3));
-	the_colors[0] = set_color_from_int(COLOR_MIN);
-	the_colors[1] = set_color_from_int(COLOR_MID);
-	the_colors[2] = set_color_from_int(COLOR_MAX);
-	(*grid).num_cols = 3;
+	the_colors[0] = get_color_from_int(COLOR_MIN);
+	the_colors[1] = get_color_from_int(COLOR_MID);
+	the_colors[2] = get_color_from_int(COLOR_MAX);
+	(*grid).cnum = 3;
 	return (the_colors);
 }
 
@@ -62,9 +62,9 @@ t_color				**read_colors(int argc, char **argv, t_grid *grid)
 	ft_bzero(c, (sizeof(t_color*) * (argc - i)));
 	while (i < argc)
 	{
-		c[i - 2] = str_to_color(argv[i]);
+		c[i - 2] = get_color_from_str(argv[i]);
 		i++;
 	}
-	(*grid).num_cols = (argc - 2);
+	(*grid).cnum = (argc - 2);
 	return (c);
 }

@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_color_from_int.c                               :+:      :+:    :+:   */
+/*   make_col_from_str.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/27 18:26:09 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/27 19:36:01 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/02 14:13:36 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/02 14:13:56 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
-t_color		*set_color_from_int(unsigned int c)
+static int		value_of(char c)
 {
-	t_color		*col;
+	if (ft_isdigit(c))
+		return (c - 48);
+	return (c - 55);
+}
 
-	col = (t_color*)malloc(sizeof(t_color));
-	if (!col)
+t_col			*make_col_from_str(char *str)
+{
+	t_col		*c;
+
+	c = init_color();
+	if (!c)
 		return (NULL);
-	ft_bzero(col, sizeof(t_color));
-	(*col).b = (c % 256);
-	c = c / 256;
-	(*col).g = (c % 256);
-	c = c / 256;
-	(*col).r = (c % 256);
-	c = c / 256;
-	(*col).a = (c % 256);
-	return (col);
+	str += 2;
+	(*c).r += value_of(*(str++)) * 16;
+	(*c).r += value_of(*(str++));
+	(*c).g += value_of(*(str++)) * 16;
+	(*c).g += value_of(*(str++));
+	(*c).b += value_of(*(str++)) * 16;
+	(*c).b += value_of(*(str++));
+	return (c);
 }

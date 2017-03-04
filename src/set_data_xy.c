@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   set_data_xy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 21:17:29 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/02 22:23:44 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/02 19:20:33 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/02 19:22:47 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "mgl.h"
 
-int		ft_error(char *str)
+#define D (*data)
+#define P (*p)
+
+void	set_data_xy(t_data *data, t_xyp *p)
 {
-	ft_putstr_fd("Error: ", 2);
-	ft_putendl_fd(str, 2);
-	return (1);
+	if (data && p)
+	{
+		D.wid = P.x;
+		D.len = P.y;
+		del_xyp(p);
+	}
+	else
+		ft_error("NULL parameter(s) passed to set_data_xy()");
 }
