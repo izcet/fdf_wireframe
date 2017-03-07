@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 21:09:32 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 22:41:04 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/06 21:34:45 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static t_col	**make_default_colors(void)
 	return (c);
 }
 
-static t_col	**make_colors_from_args(int argc, char **argv)
+static t_col	**make_colors_from_args(int argc, char **argv, int num_valid)
 {
 	t_col	**c;
 	int		i;
@@ -126,6 +126,6 @@ t_col			**make_col_1d_arr(t_data *data, int argc, char **argv)
 	else
 	{
 		D.num_col = num_valid;
-		return (make_colors_from_args(argc, argv));
+		return (make_colors_from_args(argc, argv, num_valid));
 	}
 }

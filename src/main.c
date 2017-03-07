@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 18:16:33 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 22:06:38 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/06 01:03:56 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,13 @@ int		main(int argc, char **argv)
 	set_data_xy(data, dimen);
 	if (populate_map(data, argv[1]) != 0)
 		return (cleanup(data, 1));
-	if (set_data_colors(data, argc, argv) != 0)
+	if (set_point_cols(data, argc, argv) != 0)
 		return (cleanup(data, 1));
+
+
+
+
+
 
 	print_grid(grid); ///
 	data = init_data(argv[1], grid, NULL);
@@ -45,13 +50,9 @@ int		main(int argc, char **argv)
 		return (0);
 
 	(*grid).c = read_colors(argc, argv, grid);
-	ft_putendl("here");
 	set_point_colors(grid);
-	ft_putendl("amid");
 	set_offset(grid, data);
-	ft_putendl("mid");
 	draw_grid(grid, data, -1, -1);
-	ft_putendl("there");
 	mlx_key_hook((*(*data).win).ptr, key_pressed, data);
 	mlx_mouse_hook((*(*data).win).ptr, mouse_pressed, data);
 	mlx_loop((*data).mlx);

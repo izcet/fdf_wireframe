@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 14:13:27 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/02 14:13:33 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/04 17:09:14 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_col	*make_col_from_int(unsigned int num)
 {
 	t_col	*col;
 
-	col = init_color();
+	col = init_col();
 	if (!col)
 		return (NULL);
 	(*col).b = (num % 256);

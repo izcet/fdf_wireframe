@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 13:14:36 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 23:02:38 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/06 21:39:17 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	del_xyzcp(t_xyzcp *p)
 	if (p)
 	{
 		if ((*p).c)
-			del_color((*p).c);
+			del_col((*p).c);
 		ft_bzero(p, sizeof(t_xyzcp));
 		free(p);
 		p = NULL;

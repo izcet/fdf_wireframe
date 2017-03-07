@@ -6,7 +6,7 @@
 #    By: irhett <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/03/03 22:57:20 by irhett           ###   ########.fr        #
+#    Updated: 2017/03/06 21:39:50 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,22 @@ GFLAGS		=	-L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 FLAGS		=	$(CFLAGS) $(GFLAGS)
 
 SRC_DIR		= 	src
-SRC_FILE	=	## INSERT ##
+
+
+
+
+
+SRC_FILE	=	testmain.c get_col_from_range.c gradient_col.c \
+				make_col_from_int.c make_col_from_str.c is_valid_color.c \
+				get_int_from_chars.c get_int_from_col.c t_col.c \
+				set_point_cols.c t_zcp.c t_zcp_1d_arr.c t_zcp_2d_arr.c \
+				t_data.c t_col_1d_arr.c t_win.c t_frame.c t_win_1d_arr.c \
+				t_xyzcp.c t_xyzcp_1d_arr.c t_xyzcp_2d_arr.c set_z_range.c
+
+
+
+
+
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
 
 OBJ_DIR		=	obj

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 14:13:36 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/02 14:13:56 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/04 17:09:40 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_col			*make_col_from_str(char *str)
 {
 	t_col		*c;
 
-	c = init_color();
+	c = init_col();
 	if (!c)
 		return (NULL);
 	str += 2;

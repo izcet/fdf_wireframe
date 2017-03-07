@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 22:42:11 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 22:57:17 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/06 22:01:43 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ typedef	struct			s_color
 	unsigned char		b;
 }						t_col;
 
-typedef struct			s_point
+typedef struct			s_xypoint
 {
 	int					x;
 	int					y;
 }						t_xyp;
 
-typedef	struct			s_point
+typedef	struct			s_zcpoint
 {
 	int					z;
 	t_col				*c;
 }						t_zcp;
 
-typedef struct			s_point
+typedef struct			s_xyzcpoint
 {
 	float				x;
 	float				y;
@@ -53,12 +53,7 @@ typedef struct			s_point
 
 typedef struct			s_grid
 {
-	t_zcp				**p;
-}						t_map;
-
-typedef struct			s_grid
-{
-	t_xyzcp				**p;
+	t_xyzcp				***p;
 	t_xyzcp				*pos;
 	t_xyzcp				*ang;
 }						t_frame;
@@ -70,7 +65,7 @@ typedef struct			s_window
 	t_xyzcp				*pos;
 	t_xyzcp				*ang;
 	unsigned int		range; //distance between points in rendering
-	t_data				*root;
+	void				*data; // t_data
 	// what other variables do I need to render a window?
 }						t_win;
 
@@ -82,7 +77,7 @@ typedef struct			s_data
 	int					z_max;
 	int					num_win;
 	t_win				**win; //array[num_win] of windows
-	t_map				*map;
+	t_zcp				***map;
 	t_frame				*frame;
 	int					num_col;
 	t_col				**col; // array[num_col] of colors // [0] is low
@@ -95,7 +90,6 @@ t_col					*init_col(void);
 t_xyp					*init_xyp(void);
 t_zcp					*init_zcp(void);
 t_xyzcp					*init_xyzcp(void);
-t_map					*init_map(void);
 t_frame					*init_frame(void);
 t_win					*init_win(void);
 t_data					*init_data(void);
@@ -104,12 +98,12 @@ t_zcp					***init_zcp_2d_arr(int len, int wid);
 t_xyzcp					**init_xyzcp_1d_arr(int wid);
 t_xyzcp					***init_xyzcp_2d_arr(int len, int wid);
 t_col					**init_col_1d_arr(int size);
+t_win					**init_win_1d_arr(int size);
 
 void					del_col(t_col *c);
 void					del_xyp(t_xyp *p);
 void					del_zcp(t_zcp *p);
 void					del_xyzcp(t_xyzcp *p);
-void					del_map(t_map *grid);
 void					del_frame(t_frame *grid, int p_rows, int p_cols);
 void					del_win(t_win *win, void *mlx); // see file
 void					del_data(t_data *data); // see file
@@ -118,11 +112,12 @@ void					del_zcp_2d_arr(t_zcp ***p, int len, int wid);
 void					del_xyzcp_1d_arr(t_xyzcp **p, int wid);
 void					del_xyzcp_2d_arr(t_xyzcp ***p, int len, int wid);
 void					del_col_1d_arr(t_col **c, int size);
+void					del_win_1d_arr(t_win **win, int size, void *mlx);
 
 t_col					*make_col_from_chars(char a, char r, char g, char b);
 t_col					*make_col_from_int(unsigned int num); // 0x00AA11FF
 t_col					*make_col_from_str(char *str); // "0x00AAFF"
-t_col					**make_col_1d_arr(t_data *data, int argc, char **argv)
+t_col					**make_col_1d_arr(t_data *data, int argc, char **argv);
 unsigned int			get_int_from_chars(char a, char r, char g, char b);
 unsigned int			get_int_from_col(t_col *c);
 int						is_valid_color(char *str);
@@ -135,19 +130,14 @@ t_xyp					*parse_file(char *file);
 
 void					set_z_range(t_data *data);
 void					set_data_xy(t_data *data, t_xyp *p);
-void					set_point_colors(t_data *data, int argc, char **argv);
+int						set_point_cols(t_data *data, int argc, char **argv);
 int						populate_map(t_data *data, char *file);
 
-t_col					*get_color_from_range(t_data *data, int row, int col);
+t_col					*get_col_from_range(t_data *data, int row, int col);
 // recode				this ^^^
 
-
-
-
-
-
-
-unsigned int			gradient_color(t_color *a, t_color *b, int n, int val);
+unsigned int			gradient_col(t_col *a, t_col *b, int n, int val);
+// recode				this ^^^
 
 
 /*typedef struct			s_grid
@@ -162,7 +152,7 @@ unsigned int			gradient_color(t_color *a, t_color *b, int n, int val);
 	int					z_max;
 	int					z_min;
 	
-	t_color				**c;
+	t_col				**c;
 	int					c_num;
 }						t_grid;
 
@@ -187,7 +177,7 @@ typedef struct			s_data
 	// double center y
 	// double range (distance from center relative to original dimensions)
 	//
-}*/						t_data;
+}						t_data;
 
 // according to standard there are 3 vectors I need to store
 // world which is grid points relative to each other
@@ -208,8 +198,8 @@ void					print_row(int row, t_grid *grid);
 
 void					draw_line(t_xy *a, t_xy *b, t_data *d);
 
-t_color					**read_colors(int argc, char **argv, t_grid *grid);
-void					set_point_colors(t_grid *grid);
+t_col					**read_colors(int argc, char **argv, t_grid *grid);
+void					set_point_cols(t_grid *grid);
 void					draw_grid(t_grid *grid, t_data *data, int row, int col);
-void					set_offset(t_grid *grid, t_data *data);
+void					set_offset(t_grid *grid, t_data *data);*/
 #endif
