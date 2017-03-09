@@ -6,7 +6,7 @@
 #    By: irhett <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/03/06 21:39:50 by irhett           ###   ########.fr        #
+#    Updated: 2017/03/08 15:54:15 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,20 +27,14 @@ FLAGS		=	$(CFLAGS) $(GFLAGS)
 
 SRC_DIR		= 	src
 
-
-
-
-
-SRC_FILE	=	testmain.c get_col_from_range.c gradient_col.c \
+SRC_FILE	=	main.c get_col_from_range.c gradient_col.c parse_file.c\
 				make_col_from_int.c make_col_from_str.c is_valid_color.c \
 				get_int_from_chars.c get_int_from_col.c t_col.c \
 				set_point_cols.c t_zcp.c t_zcp_1d_arr.c t_zcp_2d_arr.c \
 				t_data.c t_col_1d_arr.c t_win.c t_frame.c t_win_1d_arr.c \
-				t_xyzcp.c t_xyzcp_1d_arr.c t_xyzcp_2d_arr.c set_z_range.c
-
-
-
-
+				t_xyzcp.c t_xyzcp_1d_arr.c t_xyzcp_2d_arr.c set_z_range.c \
+				populate_map.c set_data_xy.c t_xyp.c print_data_map.c \
+				print_data_row.c
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
 

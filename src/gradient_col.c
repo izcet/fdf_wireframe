@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 21:18:50 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/06 21:18:53 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/08 13:26:12 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ static unsigned char	gcv(unsigned char a, unsigned char b, int v, int r)
 	c1 = ((float)(a) * (float)((float)(r - v) / (float)(r)));
 	c2 = (float)((float)(b) * (float)((float)(v) / (float)(r)));
 	if ((unsigned char)(c1 + c2) > 255)
-	{
 		return (255);
-	}
 	if ((unsigned char)(c1 + c2) < 0)
 	{
 		ft_putendl("0");
@@ -33,7 +31,7 @@ static unsigned char	gcv(unsigned char a, unsigned char b, int v, int r)
 	}
 	return ((unsigned char)(c1 + c2));
 }
-// should v and R be unsigned to improve precision?
+
 unsigned int			gradient_col(t_col *a, t_col *b, int v, int r)
 {
 	unsigned char	fa;

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 18:02:51 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/02 18:03:01 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/08 13:40:36 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define P (*p)
 
-static int	parse_space(char *str)
+static int		parse_space(char *str)
 {
 	int		i;
 
@@ -24,7 +24,7 @@ static int	parse_space(char *str)
 	return (i);
 }
 
-static int	get_num(char *str)
+static int		get_num(char *str)
 {
 	int		num;
 
@@ -52,7 +52,7 @@ static int	get_num(char *str)
 	return (num);
 }
 
-static int	scan_file(int fd, t_xyp *p)
+static t_xyp	*scan_file(int fd, t_xyp *p)
 {
 	int		ret;
 	int		error;
@@ -77,7 +77,7 @@ static int	scan_file(int fd, t_xyp *p)
 	return (p);
 }
 
-t_xyp		*parse_file(char *file)
+t_xyp			*parse_file(char *file)
 {
 	int		fd;
 	t_xyp	*dimensions;

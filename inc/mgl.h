@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 22:42:11 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/06 22:01:43 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/08 15:54:18 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,14 @@ int						set_point_cols(t_data *data, int argc, char **argv);
 int						populate_map(t_data *data, char *file);
 
 t_col					*get_col_from_range(t_data *data, int row, int col);
-// recode				this ^^^
-
 unsigned int			gradient_col(t_col *a, t_col *b, int n, int val);
-// recode				this ^^^
+
+
+void					print_data_map(t_data *data);
+void					print_data_row(int row, t_data *data);
+
+
+
 
 
 /*typedef struct			s_grid

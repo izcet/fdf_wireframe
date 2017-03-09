@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 17:23:07 by irhett            #+#    #+#             */
-/*   Updated: 2017/02/25 01:34:28 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/08 13:27:05 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,9 @@ int			is_valid_color(char *str)
 		return (0);
 	if (*(str++) != 'x')
 		return (0);
-	i = 0;
-	while (i < 6)
-	{
+	i = -1;
+	while (++i < 6)
 		if (!is_hex(str[i]))
 			return (0);
-		i++;
-	}
 	return (1);
 }

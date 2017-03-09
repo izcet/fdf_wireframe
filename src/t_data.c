@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 12:12:59 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/06 21:33:33 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/07 10:58:59 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	del_data(t_data *data)
 	if (data)
 	{
 		if (D.win)
-			del_win_1d_arr(D.win, D.num_win);
+			del_win_1d_arr(D.win, D.num_win, D.mlx);
 		if (D.map)
 			del_zcp_2d_arr(D.map, D.len, D.wid);
 		if (D.frame)

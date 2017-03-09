@@ -6,15 +6,17 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 22:00:45 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/03 18:58:08 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/08 13:54:48 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mgl.h"
 
+#define D (*data)
+
 static int		point_set_color(t_zcp *p, char *str)
 {
-	(*p).color = make_col_from_str(str + 1);
+	(*p).c = make_col_from_str(str + 1);
 	return (9);
 }
 
@@ -27,7 +29,7 @@ static void		fill_row(t_zcp **p, int wid, char *str)
 	{ 
 		while (*str == ' ')
 			str++;
-		p[i].z = ft_atoi(str);
+		(*p[i]).z = ft_atoi(str);
 		while ((ft_isdigit(*str)) || (*str == '-'))
 			str++;
 		if (*str == ',')
@@ -35,12 +37,11 @@ static void		fill_row(t_zcp **p, int wid, char *str)
 	}
 }
 
-static t_zcp	***make_zcp_2d_arr(int fd, int len, int wid)
+static t_zcp	***populate_zcp_2d_arr(int fd, int len, int wid, t_data *data)
 {
 	t_zcp	***p;
 	char	*line;
 	int		row;
-	int		col;
 	int		br;
 
 	p = init_zcp_2d_arr(len, wid);
@@ -70,7 +71,7 @@ int				populate_map(t_data *data, char *file)
 		return (ft_error("Unable to reopen file."));
 	if (!data)
 		return (ft_error("NULL pointer passed to populate_map()"));
-	D.map = make_zcp_2d_arr(fd, D.len, D.wid);
+	D.map = populate_zcp_2d_arr(fd, D.len, D.wid, data);
 	close(fd);
 	if (!D.map)
 		return (1);
