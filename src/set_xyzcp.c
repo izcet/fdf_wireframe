@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   set_xyzcp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 21:17:29 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/09 19:42:56 by irhett           ###   ########.fr       */
+/*   Created: 2017/03/11 00:34:31 by irhett            #+#    #+#             */
+/*   Updated: 2017/03/11 00:38:50 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "mgl.h"
 
-int		ft_error(char *str)
+#define P (*p)
+
+void	set_xyzcp(t_xyzcp *p, float x, float y, float z)
 {
-	ft_putstr_fd("Error: ", 2);
-	ft_putendl_fd(str, 2);
-	return (1);
+	if (p)
+	{
+		P.x = x;
+		P.y = y;
+		P.z = z;
+	}
+	else
+		ft_error("NULL passed to set_xyzcp()");
 }

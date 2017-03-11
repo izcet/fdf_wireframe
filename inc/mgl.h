@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 22:42:11 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/08 15:54:18 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/11 00:39:00 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct			s_xyzcpoint
 	t_col				*c;
 }						t_xyzcp;
 
-typedef struct			s_grid
+typedef struct			s_frame
 {
 	t_xyzcp				***p;
 	t_xyzcp				*pos;
@@ -114,7 +114,10 @@ void					del_xyzcp_2d_arr(t_xyzcp ***p, int len, int wid);
 void					del_col_1d_arr(t_col **c, int size);
 void					del_win_1d_arr(t_win **win, int size, void *mlx);
 
+//???
 t_col					*make_col_from_chars(char a, char r, char g, char b);
+
+
 t_col					*make_col_from_int(unsigned int num); // 0x00AA11FF
 t_col					*make_col_from_str(char *str); // "0x00AAFF"
 t_col					**make_col_1d_arr(t_data *data, int argc, char **argv);
@@ -139,6 +142,8 @@ unsigned int			gradient_col(t_col *a, t_col *b, int n, int val);
 
 void					print_data_map(t_data *data);
 void					print_data_row(int row, t_data *data);
+void					rotate_point_by_matrix(t_xyzcp *p, t_int_matrix *t);
+void					set_xyzcp(t_xyzcp *p, float x, float y, float z);
 
 
 
@@ -177,9 +182,9 @@ typedef struct			s_data
 	t_grid				*grid;
 	// I still need to handle the 3d of the points to the 2d of the window
 	// add a view reference maybe?
-	// double center x
-	// double center y
-	// double range (distance from center relative to original dimensions)
+	// float center x
+	// float center y
+	// float range (distance from center relative to original dimensions)
 	//
 }						t_data;
 

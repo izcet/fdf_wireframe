@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: irhett <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/02/24 13:00:25 by irhett           ###   ########.fr        #
+#    Updated: 2017/03/10 23:47:15 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,9 @@ SRC_FILE	=	ft_atoi.c ft_bubblesort_intarr.c ft_bzero.c ft_findbiggest.c \
 				ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtolower.c \
 				ft_strtoupper.c ft_strtrim.c ft_swap.c ft_tolower.c \
 				ft_toupper.c ft_wordlen.c get_next_line.c gnl_concat.c \
-				ft_error.c ft_usage.c
+				ft_error.c ft_usage.c t_int_matrix.c t_dub_matrix.c \
+				ft_dot_product.c mult_int_matrix.c mult_dub_matrix.c \
+				get_col_from_arr.c plus_matrix_scalar.c
 SRC_DIR		= 	src/
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILE))
 OBJ_FILE	=	$(SRC_FILE:.c=.o)
