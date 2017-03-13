@@ -6,7 +6,7 @@
 #    By: irhett <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/03/11 00:39:03 by irhett           ###   ########.fr        #
+#    Updated: 2017/03/12 18:50:31 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC_FILE	=	main.c get_col_from_range.c gradient_col.c parse_file.c\
 				t_data.c t_col_1d_arr.c t_win.c t_frame.c t_win_1d_arr.c \
 				t_xyzcp.c t_xyzcp_1d_arr.c t_xyzcp_2d_arr.c set_z_range.c \
 				populate_map.c set_data_xy.c t_xyp.c print_data_map.c \
-				print_data_row.c rotate_point_by_matrix.c set_xyzcp.c
+				print_data_row.c rotate_point_by_matrix.c set_xyzcp.c \
+				rotate_point_around_origin.c rotate_point_around_point.c \
 
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))

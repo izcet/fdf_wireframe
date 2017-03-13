@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 22:42:11 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/11 00:39:00 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/12 18:51:11 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # define COLOR_MAX		0x00FF0000
 # define COLOR_MID		0x0000FF00
 # define COLOR_MIN		0x000000FF
+
+# define degreesToRadians(angleDegrees) (angleDegrees * M_PI / 180.0)
+# define radiansToDegrees(angleRadians) (angleRadians * 180.0 / M_PI)
 
 typedef	struct			s_color
 {
@@ -142,8 +145,26 @@ unsigned int			gradient_col(t_col *a, t_col *b, int n, int val);
 
 void					print_data_map(t_data *data);
 void					print_data_row(int row, t_data *data);
-void					rotate_point_by_matrix(t_xyzcp *p, t_int_matrix *t);
+void					rotate_point_by_matrix(t_xyzcp *p, t_dub_matrix *t);
 void					set_xyzcp(t_xyzcp *p, float x, float y, float z);
+
+/*
+** All angles are expected in degrees
+*/
+
+/*
+** rotate point around origin axis
+*/
+void					rot_pox(t_xyzcp *p, double angle);
+void					rot_poy(t_xyzcp *p, double angle);
+void					rot_poz(t_xyzcp *p, double angle);
+
+/*
+** rotate point around point axis
+*/
+void					rot_ppx(t_xyzcp *p, t_xyzcp *offset, double angle);
+void					rot_ppy(t_xyzcp *p, t_xyzcp *offset, double angle);
+void					rot_ppy(t_xyzcp *p, t_xyzcp *offset, double angle);
 
 
 
