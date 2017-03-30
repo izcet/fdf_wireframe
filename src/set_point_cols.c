@@ -18,15 +18,15 @@
 
 static int		fill_point_colors(t_data *data)
 {
-	int		row;
-	int		col;
+	unsigned int	row;
+	unsigned int	col;
 	t_col	*c;
 
-	row = -1;
-	while (++row < D.len)
+	row = 0;
+	while (row < D.len)
 	{
-		col = -1;
-		while (++col < D.wid)
+		col = 0;
+		while (col < D.wid)
 		{
 			if (!P.c)
 			{
@@ -36,7 +36,9 @@ static int		fill_point_colors(t_data *data)
 				else
 					return (1);
 			}
+			col++;
 		}
+		row++;
 	}
 	return (0);
 }

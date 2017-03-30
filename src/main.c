@@ -39,9 +39,17 @@ int		main(int argc, char **argv)
 	if (set_point_cols(data, argc, argv) != 0)
 		return (cleanup(data, 1));
 	print_data_map(data);
-	/*draw_grid(grid, data, -1, -1);
-	mlx_key_hook((*(*data).win).ptr, key_pressed, data);
-	mlx_mouse_hook((*(*data).win).ptr, mouse_pressed, data);
-	mlx_loop((*data).mlx);*/
+	if (make_3d_map_from_zcp(data))
+	{
+		D.num_win = 3;
+		D.win = init_win_1d_arr(D.num_win);
+		set_win(data, 800, 800, D.win[0]);
+		set_win(data, 1000, 1000, D.win[1]);
+		set_win(data, WINDOW_SIZE, WINDOW_SIZE, D.win[2]);
+		//draw_grid(grid, data, -1, -1);
+		//mlx_key_hook((*(*data).win).ptr, key_pressed, data);
+		//mlx_mouse_hook((*(*data).win).ptr, mouse_pressed, data);
+		mlx_loop((*data).mlx);
+	}
 	return (cleanup(data, 0));
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_grid.c                                        :+:      :+:    :+:   */
+/*   draw_isometric.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -28,7 +28,7 @@ static t_xy		*get_window_point(int row, int col, t_zc p, t_data *data)
 	return (point);
 }
 
-void			draw_grid(t_grid *grid, t_data *data, int row, int col)
+void			draw_isometric(t_win *win)
 {
 	t_xy	*p1;
 	t_xy	*p2;

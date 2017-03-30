@@ -14,8 +14,8 @@
 
 void	print_data_row(int row, t_data *data)
 {
-	int		i;
-	char	*str;
+	unsigned int	i;
+	char			*str;
 
 	i = 0;
 	while (i < (*data).wid)

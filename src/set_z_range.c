@@ -17,14 +17,14 @@
 
 void		set_z_range(t_data *data)
 {
-	int		row;
-	int		col;
+	unsigned int	row;
+	unsigned int	col;
 
-	row = -1;
-	while (++row < D.len)
+	row = 0;
+	while (row < D.len)
 	{
-		col = -1;
-		while (++col < D.wid)
+		col = 0;
+		while (col < D.wid)
 		{
 			if (row + col == 0)
 			{
@@ -38,6 +38,8 @@ void		set_z_range(t_data *data)
 				if (D.z_max < P.z)
 					D.z_max = P.z;
 			}
+			col++;
 		}
+		row++;
 	}
 }

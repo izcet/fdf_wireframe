@@ -20,12 +20,12 @@ static int		point_set_color(t_zcp *p, char *str)
 	return (9);
 }
 
-static void		fill_row(t_zcp **p, int wid, char *str)
+static void		fill_row(t_zcp **p, unsigned int wid, char *str)
 {
-	int		i;
+	unsigned int	i;
 
-	i = -1;
-	while (++i < wid)
+	i = 0;
+	while (i < wid)
 	{ 
 		while (*str == ' ')
 			str++;
@@ -34,30 +34,32 @@ static void		fill_row(t_zcp **p, int wid, char *str)
 			str++;
 		if (*str == ',')
 			str += point_set_color(p[i], str);
+		i++;
 	}
 }
 
-static t_zcp	***populate_zcp_2d_arr(int fd, int len, int wid, t_data *data)
+static t_zcp	***populate_zcp_2d_arr(int fd, t_data *data)
 {
-	t_zcp	***p;
-	char	*line;
-	int		row;
-	int		br;
+	t_zcp			***p;
+	char			*line;
+	unsigned int	row;
+	int				br;
 
-	p = init_zcp_2d_arr(len, wid);
+	p = init_zcp_2d_arr(D.len, D.wid);
 	if (!p)
 		return (NULL);
-	row = -1;
-	while (++row < D.len)
+	row = 0;
+	while (row < D.len)
 	{
 		br = get_next_line(fd, &line);
 		if (br < 0)
 		{
-			del_zcp_2d_arr(p, row, wid);
+			del_zcp_2d_arr(p, row, D.wid);
 			return (NULL);
 		}
-		fill_row(p[row], wid, line);
+		fill_row(p[row], D.wid, line);
 		free(line);
+		row++;
 	}
 	return (p);
 }
@@ -71,7 +73,7 @@ int				populate_map(t_data *data, char *file)
 		return (ft_error("Unable to reopen file."));
 	if (!data)
 		return (ft_error("NULL pointer passed to populate_map()"));
-	D.map = populate_zcp_2d_arr(fd, D.len, D.wid, data);
+	D.map = populate_zcp_2d_arr(fd, data);
 	close(fd);
 	if (!D.map)
 		return (1);

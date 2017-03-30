@@ -22,11 +22,14 @@ void	del_data(t_data *data)
 			del_win_1d_arr(D.win, D.num_win, D.mlx);
 		if (D.map)
 			del_zcp_2d_arr(D.map, D.len, D.wid);
+		if (D.map3d)
+			del_xyzcp_2d_arr(D.map3d, D.len, D.wid);
 		if (D.frame)
 			del_frame(D.frame, D.len, D.wid);
 		if (D.col)
 			del_col_1d_arr(D.col, D.num_col);
-		free(D.mlx);
+		if (D.mlx)
+			free(D.mlx);
 		ft_bzero(data, sizeof(t_data));
 		free(data);
 		data = NULL;
@@ -46,5 +49,6 @@ t_data	*init_data(void)
 		return (NULL);
 	}
 	ft_bzero(data, sizeof(t_data));
+	D.mlx = mlx_init();
 	return (data);
 }

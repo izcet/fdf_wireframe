@@ -6,18 +6,18 @@
 #    By: irhett <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/03/12 18:50:31 by irhett           ###   ########.fr        #
+#    Updated: 2017/03/17 21:20:19 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	fdf
-MLX_DIR		=	mlx/
-MLX			=	$(MLX_DIR)libmlx.a
+MLX_DIR		=	mlx
+MLX			=	$(MLX_DIR)/libmlx.a
 
-LIBFT_DIR	=	libft/
+LIBFT_DIR	=	libft
 LIBFT_LIB	=	libft.a
 LIBFT_INC	=	includes
-LIB			=	$(LIBFT_DIR)$(LIBFT_LIB)
+LIB			=	$(LIBFT_DIR)/$(LIBFT_LIB)
 
 CC			=	gcc
 
@@ -36,7 +36,7 @@ SRC_FILE	=	main.c get_col_from_range.c gradient_col.c parse_file.c\
 				populate_map.c set_data_xy.c t_xyp.c print_data_map.c \
 				print_data_row.c rotate_point_by_matrix.c set_xyzcp.c \
 				rotate_point_around_origin.c rotate_point_around_point.c \
-
+				make_xyzcp_from_zcp.c set_win.c #draw_isometric.c
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
 
@@ -44,7 +44,7 @@ OBJ_DIR		=	obj
 OBJ_FILE	=	$(SRC_FILE:.c=.o)
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(OBJ_FILE))
 
-INC_DIR		=	-I inc -I $(MLX_DIR) -I $(LIBFT_DIR)$(LIBFT_INC)
+INC_DIR		=	-I inc -I $(MLX_DIR) -I $(LIBFT_DIR)/$(LIBFT_INC)
 
 .PHONY: all clean fclean re libft mlx
 

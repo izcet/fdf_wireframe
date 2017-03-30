@@ -33,6 +33,7 @@ void	del_win_1d_arr(t_win **p, int size, void *mlx)
 		ft_error("NULL passed to del_win_1d_arr()");
 }
 
+//set function pointers
 t_win	**init_win_1d_arr(int size)
 {
 	t_win	**p;

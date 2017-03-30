@@ -28,8 +28,6 @@ t_win	*init_win(void)
 	return (win);
 }
 
-
-// if win contains *data, then couldn't I just call *mlx from (*data).mlx?
 void	del_win(t_win *win, void *mlx)
 {
 	if (win)
@@ -41,10 +39,10 @@ void	del_win(t_win *win, void *mlx)
 			free(W.ptr);
 		}
 		// free function pointers
-		if (W.pos)
+		/*if (W.pos)
 			del_xyzcp(W.pos);
 		if (W.ang)
-			del_xyzcp(W.ang);
+			del_xyzcp(W.ang);iii*/
 		ft_bzero(win, sizeof(t_win));
 		free(win);
 		win = NULL;

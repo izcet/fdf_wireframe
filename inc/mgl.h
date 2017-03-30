@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 22:42:11 by irhett            #+#    #+#             */
-/*   Updated: 2017/03/12 18:51:11 by irhett           ###   ########.fr       */
+/*   Updated: 2017/03/13 17:13:03 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <math.h>
 
 # define WINDOW_SIZE	800
+# define SCALE_OFF		5
+# define MOVE_OFF		12
 # define COLOR_MAX		0x00FF0000
 # define COLOR_MID		0x0000FF00
 # define COLOR_MIN		0x000000FF
@@ -54,6 +56,10 @@ typedef struct			s_xyzcpoint
 	t_col				*c;
 }						t_xyzcp;
 
+/*
+** I think I was going to use this for perspective projection windows
+** but for now it does nothing
+*/
 typedef struct			s_frame
 {
 	t_xyzcp				***p;
@@ -61,32 +67,47 @@ typedef struct			s_frame
 	t_xyzcp				*ang;
 }						t_frame;
 
+/*
+** Unincluded features, to be implemented for perspective projection
+**
+**	t_xyzcp		*pos;
+**	t_xyzcp		*ang;
+**	function pointers
+*/
 typedef struct			s_window
 {
 	void				*ptr;
-	//function pointers // null terminated array?
-	t_xyzcp				*pos;
-	t_xyzcp				*ang;
-	unsigned int		range; //distance between points in rendering
-	void				*data; // t_data
-	// what other variables do I need to render a window?
+	unsigned int		wid;
+	unsigned int		len;
+	unsigned int		scale;
+	unsigned int		center_x;
+	unsigned int		center_y;
+	char				true_z;
+
+	struct s_data		*data;
 }						t_win;
 
+/*
+** map is the array of points read in from the file
+** wid and len define the array lengths of map
+** z_min and z_max define the value range of the map
+**
+** for colors, col[0] defines the low point and col[n] defines highest point
+*/
 typedef struct			s_data
 {
-	int					wid; // for the point arrays
-	int					len; // for the point arrays
+	t_zcp				***map;
+	t_xyzcp				***map3d;
+	unsigned int		wid;
+	unsigned int		len;
 	int					z_min;
 	int					z_max;
+	t_win				**win;
 	int					num_win;
-	t_win				**win; //array[num_win] of windows
-	t_zcp				***map;
-	t_frame				*frame;
+	t_col				**col;
 	int					num_col;
-	t_col				**col; // array[num_col] of colors // [0] is low
+	t_frame				*frame;
 	void				*mlx;
-	// what other structures and data do I want to pass around the whole fdf?
-
 }						t_data;
 
 t_col					*init_col(void);
@@ -96,10 +117,10 @@ t_xyzcp					*init_xyzcp(void);
 t_frame					*init_frame(void);
 t_win					*init_win(void);
 t_data					*init_data(void);
-t_zcp					**init_zcp_1d_arr(int wid);
-t_zcp					***init_zcp_2d_arr(int len, int wid);
-t_xyzcp					**init_xyzcp_1d_arr(int wid);
-t_xyzcp					***init_xyzcp_2d_arr(int len, int wid);
+t_zcp					**init_zcp_1d_arr(unsigned int wid);
+t_zcp					***init_zcp_2d_arr(unsigned int l, unsigned int w);
+t_xyzcp					**init_xyzcp_1d_arr(unsigned int wid);
+t_xyzcp					***init_xyzcp_2d_arr(unsigned int l, unsigned int w);
 t_col					**init_col_1d_arr(int size);
 t_win					**init_win_1d_arr(int size);
 
@@ -108,21 +129,20 @@ void					del_xyp(t_xyp *p);
 void					del_zcp(t_zcp *p);
 void					del_xyzcp(t_xyzcp *p);
 void					del_frame(t_frame *grid, int p_rows, int p_cols);
-void					del_win(t_win *win, void *mlx); // see file
-void					del_data(t_data *data); // see file
-void					del_zcp_1d_arr(t_zcp **p, int wid);
-void					del_zcp_2d_arr(t_zcp ***p, int len, int wid);
-void					del_xyzcp_1d_arr(t_xyzcp **p, int wid);
-void					del_xyzcp_2d_arr(t_xyzcp ***p, int len, int wid);
+void					del_win(t_win *win, void *mlx);
+void					del_data(t_data *data);
+void					del_zcp_1d_arr(t_zcp **p, unsigned int wid);
+void					del_zcp_2d_arr(t_zcp ***p, unsigned int len, 
+										unsigned int wid);
+void					del_xyzcp_1d_arr(t_xyzcp **p, unsigned int wid);
+void					del_xyzcp_2d_arr(t_xyzcp ***p, unsigned int len, 
+										unsigned int wid);
 void					del_col_1d_arr(t_col **c, int size);
 void					del_win_1d_arr(t_win **win, int size, void *mlx);
 
-//???
 t_col					*make_col_from_chars(char a, char r, char g, char b);
-
-
-t_col					*make_col_from_int(unsigned int num); // 0x00AA11FF
-t_col					*make_col_from_str(char *str); // "0x00AAFF"
+t_col					*make_col_from_int(unsigned int num);
+t_col					*make_col_from_str(char *str);
 t_col					**make_col_1d_arr(t_data *data, int argc, char **argv);
 unsigned int			get_int_from_chars(char a, char r, char g, char b);
 unsigned int			get_int_from_col(t_col *c);
@@ -130,10 +150,10 @@ int						is_valid_color(char *str);
 
 t_xyp					*make_xyp(int x, int y);
 t_zcp					*make_zcp(int z, t_col *c);
+t_xyzcp					*make_xyz_from_z(t_data *d, unsigned int r, 
+										unsigned int c);
 
-// returns (wid, len) t_xyp, or NULL for invalid file
 t_xyp					*parse_file(char *file);
-
 void					set_z_range(t_data *data);
 void					set_data_xy(t_data *data, t_xyp *p);
 int						set_point_cols(t_data *data, int argc, char **argv);
@@ -165,6 +185,11 @@ void					rot_poz(t_xyzcp *p, double angle);
 void					rot_ppx(t_xyzcp *p, t_xyzcp *offset, double angle);
 void					rot_ppy(t_xyzcp *p, t_xyzcp *offset, double angle);
 void					rot_ppy(t_xyzcp *p, t_xyzcp *offset, double angle);
+
+int						make_3d_map_from_zcp(t_data *data);
+void					draw_isometric(t_win *win);
+void					set_win(t_data *data, unsigned int wid,
+								unsigned int len, t_win *win);
 
 
 

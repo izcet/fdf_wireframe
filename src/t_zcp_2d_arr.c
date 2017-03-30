@@ -12,19 +12,20 @@
 
 #include "mgl.h"
 
-void	del_zcp_2d_arr(t_zcp ***p, int len, int wid)
+void	del_zcp_2d_arr(t_zcp ***p, unsigned int len, unsigned int wid)
 {
-	int		i;
+	unsigned int	i;
 
 	if (p)
 	{
-		i = -1;
-		while (++i < len)
+		i = 0;
+		while (i < len)
 		{
 			if (p[i])
 				del_zcp_1d_arr(p[i], wid);
 			else
 				ft_error("Row pointer in del_xyzcp_2d_arr() is NULL");
+			i++;
 		}
 		free(p);
 		p = NULL;
@@ -33,10 +34,10 @@ void	del_zcp_2d_arr(t_zcp ***p, int len, int wid)
 		ft_error("Passed NULL to del_xyzcp_2d_arr()");
 }
 
-t_zcp	***init_zcp_2d_arr(int len, int wid)
+t_zcp	***init_zcp_2d_arr(unsigned int len, unsigned int wid)
 {
-	t_zcp	***p;
-	int		i;
+	t_zcp			***p;
+	unsigned int	i;
 
 	p = (t_zcp***)malloc(sizeof(t_zcp**) * len);
 	if (!p)
@@ -44,8 +45,8 @@ t_zcp	***init_zcp_2d_arr(int len, int wid)
 		ft_error("Unable to allocate memory for init_zcp_2d_arr()");
 		return (NULL);
 	}
-	i = -1;
-	while (++i < len)
+	i = 0;
+	while (i < len)
 	{
 		p[i] = init_zcp_1d_arr(wid);
 		if (!p[i])
@@ -53,6 +54,7 @@ t_zcp	***init_zcp_2d_arr(int len, int wid)
 			del_zcp_2d_arr(p, i, wid);
 			return (NULL);
 		}
+		i++;
 	}
 	return (p);
 }
