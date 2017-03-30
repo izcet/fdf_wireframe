@@ -34,7 +34,7 @@ void	del_xyzcp_2d_arr(t_xyzcp ***p, unsigned int len, unsigned int wid)
 		ft_error("Passed NULL to del_xyzcp_2d_arr()");
 }
 
-t_xyzcp		***init_xzycp_2d_arr(unsigned int len, unsigned int wid)
+t_xyzcp		***init_xyzcp_2d_arr(unsigned int len, unsigned int wid)
 {
 	t_xyzcp			***p;
 	unsigned int	i;
