@@ -12,46 +12,55 @@
 
 #include "mgl.h"
 
-#define G (*grid)
+#define W (*win)
+#define D (*W.data)
+#define P (*p)
 
-static t_xy		*get_window_point(int row, int col, t_zc p, t_data *data)
+static t_xyzcp	*get_win_point(unsigned int row, unsigned int col, t_win *win)
 {
-	t_xy	*point;
+	t_xyzcp	*p;
 
-	point = (t_xy*)malloc(sizeof(t_xy));
-	if (!point)
+	p = init_xyzcp();
+	if (!p)
 		return (NULL);
-	ft_bzero(point, sizeof(t_xy));
-	(*point).x = (col + 1) * (*(*data).win).scale;
-	(*point).y = (row + 1) * (*(*data).win).scale;
-	(*point).color = p.color;
-	return (point);
+	P.x = W.center_x + ((W.scale * (D.wid - 1)) / 2) + (W.scale * col);
+	P.y = W.center_y + ((W.scale * (D.len - 1)) / 2) + (W.scale * row);
+	if (W.true_z)
+		; 
+	// get it to relate the point values themselves
+	P.color = p.color;
+	return (p);
 }
 
-void			draw_grid(t_grid *grid, t_data *data, int row, int col)
+void			draw_grid(t_win *win)
 {
-	t_xy	*p1;
-	t_xy	*p2;
+	t_xyzcp			*p1;
+	t_xyzcp			*p2;
+	unsigned int	row;
+	unsigned int	col;
 
-	while (++row < G.length)
+	row = 0;
+	while (row < D.len)
 	{
-		col = -1;
-		while (++col < G.width)
+		col = 0;
+		while (col < D.wid)
 		{
-			p1 = get_window_point(row, col, G.p[row][col], data);
-			if (row < G.length - 1)
+			p1 = get_win_point(row, col, win);
+			if (row < D.len - 1)
 			{
-				p2 = get_window_point(row + 1, col, G.p[row + 1][col], data);
-				draw_line(p1, p2, data);
+				p2 = get_win_point(row + 1, col, win);
+				draw_line(p1, p2, win);
 				free(p2);
 			}
-			if (col < G.width - 1)
+			if (col < D.wid - 1)
 			{
-				p2 = get_window_point(row, col + 1, G.p[row][col + 1], data);
+				p2 = get_win_point(row, col + 1, win);
 				draw_line(p1, p2, data);
 				free(p2);
 			}
 			free(p1);
+			col++;
 		}
+		row++;
 	}
 }

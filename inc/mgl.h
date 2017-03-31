@@ -203,6 +203,8 @@ void					rotate_grid_y_neg(t_data *data);
 void					rotate_grid_z_pos(t_data *data);
 void					rotate_grid_z_neg(t_data *data);
 
+void					draw_grid(t_win *win);
+void					draw_line(/* fuckwad */);
 
 
 
