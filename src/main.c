@@ -46,6 +46,7 @@ int		main(int argc, char **argv)
 		set_win(data, 800, 800, D.win[0]);
 		set_win(data, 1000, 1000, D.win[1]);
 		set_win(data, WINDOW_SIZE, WINDOW_SIZE, D.win[2]);
+		set_window_hooks(data);
 		//draw_grid(grid, data, -1, -1);
 		//mlx_key_hook((*(*data).win).ptr, key_pressed, data);
 		//mlx_mouse_hook((*(*data).win).ptr, mouse_pressed, data);

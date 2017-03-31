@@ -29,17 +29,54 @@
 
 #define KEY_ESC 53
 
+#define W (*win)
+
+static void		handle_local_adjustments(t_win *win, int keycode)
+{
+	if (keycode == KEY_Z)
+		W.center_x -= MOVE_OFF;
+	else if (keycode == KEY_X)
+		W.center_y += MOVE_OFF;
+	else if (keycode == KEY_C)
+		W.center_y -= MOVE_OFF;
+	else if (keycode == KEY_V)
+		W.center_x += MOVE_OFF;
+	else if (keycode == KEY_F && W.scale > SCALE_OFF)
+		W.scale -= SCALE_OFF;
+	else if (keycode == KEY_R)
+		W.scale += SCALE_OFF;
+}
+
 int		key_pressed(int keycode, void *ptr)
 {
 	char	*str;
-	t_data	*data;
+	t_win	*win;
 
-	data = (t_data*)ptr;
+	win = (t_win*)ptr;
+	//
 	str = ft_itoa(keycode);
 	ft_putstr("Keycode is ");
 	ft_putendl(str);
 	free(str);
+	//
 	if (keycode == KEY_ESC)
-		close_win(data);
+	{
+		del_data(W.data);
+		exit(0);
+	}
+	else if (keycode == KEY_Q)
+		rotate_grid_x_pos(W.data);
+	else if (keycode == KEY_A)
+		rotate_grid_x_neg(W.data);
+	else if (keycode == KEY_W)
+		rotate_grid_y_pos(W.data);
+	else if (keycode == KEY_S)
+		rotate_grid_y_neg(W.data);
+	else if (keycode == KEY_E)
+		rotate_grid_z_pos(W.data);
+	else if (keycode == KEY_D)
+		rotate_grid_z_neg(W.data);
+	else
+		handle_local_adjustments(win, keycode);
 	return (0);
 }

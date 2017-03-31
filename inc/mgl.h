@@ -24,6 +24,7 @@
 # define COLOR_MAX		0x00FF0000
 # define COLOR_MID		0x0000FF00
 # define COLOR_MIN		0x000000FF
+# define ROT_ANGLE		10
 
 # define degreesToRadians(angleDegrees) (angleDegrees * M_PI / 180.0)
 # define radiansToDegrees(angleRadians) (angleRadians * 180.0 / M_PI)
@@ -83,7 +84,6 @@ typedef struct			s_window
 	unsigned int		center_x;
 	unsigned int		center_y;
 	char				true_z;
-
 	struct s_data		*data;
 }						t_win;
 
@@ -190,6 +190,18 @@ int						make_3d_map_from_zcp(t_data *data);
 void					draw_isometric(t_win *win);
 void					set_win(t_data *data, unsigned int wid,
 								unsigned int len, t_win *win);
+void					set_window_hooks(t_data *data);
+int						key_pressed(int keycode, void *param);
+int						mouse_pressed(int button, int x, int y, void *param);
+int						expose_hook(void *param);
+int						loop_hook(void *param);
+
+void					rotate_grid_x_pos(t_data *data);
+void					rotate_grid_x_neg(t_data *data);
+void					rotate_grid_y_pos(t_data *data);
+void					rotate_grid_y_neg(t_data *data);
+void					rotate_grid_z_pos(t_data *data);
+void					rotate_grid_z_neg(t_data *data);
 
 
 

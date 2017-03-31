@@ -21,7 +21,7 @@ LIB			=	$(LIBFT_DIR)/$(LIBFT_LIB)
 
 CC			=	gcc
 
-CFLAGS		=	-Wall -Werror -Wextra 
+CFLAGS		=	-Wall -Werror -Wextra #-fsanitize=address 
 GFLAGS		=	-L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit 
 FLAGS		=	$(CFLAGS) $(GFLAGS)
 
@@ -36,7 +36,10 @@ SRC_FILE	=	main.c get_col_from_range.c gradient_col.c parse_file.c\
 				populate_map.c set_data_xy.c t_xyp.c print_data_map.c \
 				print_data_row.c rotate_point_by_matrix.c set_xyzcp.c \
 				rotate_point_around_origin.c rotate_point_around_point.c \
-				make_xyzcp_from_zcp.c set_win.c #draw_isometric.c
+				make_xyzcp_from_zcp.c set_win.c rotate_grid_x.c \
+				rotate_grid_y.c rotate_grid_z.c set_window_hooks.c \
+				key_pressed.c mouse_pressed.c expose_hook.c loop_hook.c
+				#draw_isometric.c
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
 

@@ -24,8 +24,8 @@ void	del_data(t_data *data)
 			del_zcp_2d_arr(D.map, D.len, D.wid);
 		if (D.map3d)
 			del_xyzcp_2d_arr(D.map3d, D.len, D.wid);
-		if (D.frame)
-			del_frame(D.frame, D.len, D.wid);
+		//if (D.frame)
+		//	del_frame(D.frame, D.len, D.wid);
 		if (D.col)
 			del_col_1d_arr(D.col, D.num_col);
 		if (D.mlx)
