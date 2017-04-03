@@ -17,11 +17,6 @@
 #define N (D.map)
 #define P (*p)
 
-/*
-** places grid center at origin
-** places all points around origin relative to grid center
-*/
-
 t_xyzcp	*make_xyz_from_z(t_data *data, unsigned int row, unsigned int col)
 {
 	t_xyzcp *p;

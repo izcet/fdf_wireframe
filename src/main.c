@@ -14,13 +14,24 @@
 
 #define D (*data)
 
-int		cleanup(t_data *data, int ret)
+static int		cleanup(t_data *data, int ret)
 {
 	del_data(data);
 	return (ret);
 }
 
-int		main(int argc, char **argv)
+static void		start_graphics(t_data *data)
+{
+	D.num_win = 3;
+	D.win = init_win_1d_arr(D.num_win);
+	set_win(data, 800, "800 Pixels", D.win[0]);
+	set_win(data, 1000, "1000 Pixels", D.win[1]);
+	set_win(data, WINDOW_SIZE, "WINDOW_SIZE macro", D.win[2]);
+	set_window_hooks(data);
+	mlx_loop((*data).mlx);
+}
+
+int				main(int argc, char **argv)
 {
 	t_data	*data;
 	t_xyp	*dimen;
@@ -40,14 +51,6 @@ int		main(int argc, char **argv)
 		return (cleanup(data, 1));
 	print_data_map(data);
 	if (make_3d_map_from_zcp(data))
-	{
-		D.num_win = 3;
-		D.win = init_win_1d_arr(D.num_win);
-		set_win(data, 800, "800 Pixels", D.win[0]);
-		set_win(data, 1000, "1000 Pixels", D.win[1]);
-		set_win(data, WINDOW_SIZE, "WINDOW_SIZE macro", D.win[2]);
-		set_window_hooks(data);
-		mlx_loop((*data).mlx);
-	}
+		start_graphics(data);
 	return (cleanup(data, 0));
 }

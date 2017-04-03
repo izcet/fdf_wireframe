@@ -50,6 +50,10 @@ static void		handle_local_adjustments(t_win *win, int keycode)
 		make_3d_map_from_zcp(W.data);
 		W.center_x = W.wid / 2;
 		W.center_y = W.len / 2;
+		if (D.wid > D.len)
+			W.scale = W.wid / (D.wid + 2);
+		else
+			W.scale = W.len / (D.len + 2);
 	}
 }
 

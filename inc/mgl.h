@@ -85,13 +85,6 @@ typedef struct			s_window
 	struct s_data		*data;
 }						t_win;
 
-/*
-** map is the array of points read in from the file
-** wid and len define the array lengths of map
-** z_min and z_max define the value range of the map
-**
-** for colors, col[0] defines the low point and col[n] defines highest point
-*/
 typedef struct			s_data
 {
 	t_zcp				***map;
@@ -166,20 +159,9 @@ void					print_data_row(int row, t_data *data);
 void					rotate_point_by_matrix(t_xyzcp *p, t_dub_matrix *t);
 void					set_xyzcp(t_xyzcp *p, float x, float y, float z);
 
-/*
-** All angles are expected in degrees
-*/
-
-/*
-** rotate point around origin axis
-*/
 void					rot_pox(t_xyzcp *p, double angle);
 void					rot_poy(t_xyzcp *p, double angle);
 void					rot_poz(t_xyzcp *p, double angle);
-
-/*
-** rotate point around point axis
-*/
 void					rot_ppx(t_xyzcp *p, t_xyzcp *offset, double angle);
 void					rot_ppy(t_xyzcp *p, t_xyzcp *offset, double angle);
 void					rot_ppy(t_xyzcp *p, t_xyzcp *offset, double angle);
@@ -203,69 +185,4 @@ void					rotate_grid_z_neg(t_data *data);
 void					draw_grid(t_win *win);
 void					draw_line(t_xyzcp *p1, t_xyzcp *p2, t_win *win);
 
-
-
-
-/*typedef struct			s_grid
-{
-	int					offset;
-
-
-	t_zc				**p;
-	int					p_wid;
-	int					p_len;
-	
-	int					z_max;
-	int					z_min;
-	
-	t_col				**c;
-	int					c_num;
-}						t_grid;
-
-typedef struct			s_window
-{
-	float				scale; // distance between points
-	int					center_x; // center of grid relative to (0, 0)
-	int					center_y;
-	char				*title;
-	void				*ptr;
-}						t_win;
-
-typedef struct			s_data
-{
-
-	void				*mlx;
-	t_win				*win;
-	t_grid				*grid;
-	// I still need to handle the 3d of the points to the 2d of the window
-	// add a view reference maybe?
-	// float center x
-	// float center y
-	// float range (distance from center relative to original dimensions)
-	//
-}						t_data;
-
-// according to standard there are 3 vectors I need to store
-// world which is grid points relative to each other
-// local which is the window
-// and the third which is ????
-void					read_file_into_grid(char *file, t_grid *grid);
-
-int						key_pressed(int keycode, void *ptr);
-int						mouse_pressed(int button, int x, int y, void *ptr);
-
-void					close_win(t_data *data);
-void					free_win(t_win *win);
-void					free_grid(t_grid *grid);
-int						grid_error(t_grid *grid, char *msg);
-
-void					print_grid(t_grid *grid);
-void					print_row(int row, t_grid *grid);
-
-void					draw_line(t_xy *a, t_xy *b, t_data *d);
-
-t_col					**read_colors(int argc, char **argv, t_grid *grid);
-void					set_point_cols(t_grid *grid);
-void					draw_grid(t_grid *grid, t_data *data, int row, int col);
-void					set_offset(t_grid *grid, t_data *data);*/
 #endif

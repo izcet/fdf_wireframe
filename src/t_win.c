@@ -34,11 +34,6 @@ void	del_win(t_win *win, void *mlx)
 	{
 		if (W.ptr && mlx)
 			mlx_destroy_window(mlx, W.ptr);
-		// free function pointers
-		/*if (W.pos)
-			del_xyzcp(W.pos);
-		if (W.ang)
-			del_xyzcp(W.ang);iii*/
 		ft_bzero(win, sizeof(t_win));
 		free(win);
 		win = NULL;
