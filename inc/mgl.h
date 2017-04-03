@@ -18,9 +18,7 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WINDOW_SIZE	800
-# define SCALE_OFF		5
-# define MOVE_OFF		12
+# define WINDOW_SIZE	1600
 # define COLOR_MAX		0x00FF0000
 # define COLOR_MID		0x0000FF00
 # define COLOR_MIN		0x000000FF
@@ -188,8 +186,7 @@ void					rot_ppy(t_xyzcp *p, t_xyzcp *offset, double angle);
 
 int						make_3d_map_from_zcp(t_data *data);
 void					draw_isometric(t_win *win);
-void					set_win(t_data *data, unsigned int wid,
-								unsigned int len, t_win *win);
+void					set_win(t_data *d, unsigned int x, char *s, t_win *w);
 void					set_window_hooks(t_data *data);
 int						key_pressed(int keycode, void *param);
 int						mouse_pressed(int button, int x, int y, void *param);
@@ -204,7 +201,7 @@ void					rotate_grid_z_pos(t_data *data);
 void					rotate_grid_z_neg(t_data *data);
 
 void					draw_grid(t_win *win);
-void					draw_line(/* fuckwad */);
+void					draw_line(t_xyzcp *p1, t_xyzcp *p2, t_win *win);
 
 
 

@@ -23,12 +23,13 @@ static t_xyzcp	*get_win_point(unsigned int row, unsigned int col, t_win *win)
 	p = init_xyzcp();
 	if (!p)
 		return (NULL);
-	P.x = W.center_x + ((W.scale * (D.wid - 1)) / 2) + (W.scale * col);
-	P.y = W.center_y + ((W.scale * (D.len - 1)) / 2) + (W.scale * row);
+	P.x = (W.center_x) + (W.scale * (*D.map3d[row][col]).x);
+	P.y = (W.center_y) + (W.scale * (*D.map3d[row][col]).y);
 	if (W.true_z)
-		; 
-	// get it to relate the point values themselves
-	P.color = p.color;
+		P.y -= (W.scale * (*D.map3d[row][col]).z);
+	else
+		P.y -= (*D.map3d[row][col]).z;
+	P.c = (*(D.map[row][col])).c;
 	return (p);
 }
 
@@ -50,13 +51,11 @@ void			draw_grid(t_win *win)
 			{
 				p2 = get_win_point(row + 1, col, win);
 				draw_line(p1, p2, win);
-				free(p2);
 			}
 			if (col < D.wid - 1)
 			{
 				p2 = get_win_point(row, col + 1, win);
-				draw_line(p1, p2, data);
-				free(p2);
+				draw_line(p1, p2, win);
 			}
 			free(p1);
 			col++;

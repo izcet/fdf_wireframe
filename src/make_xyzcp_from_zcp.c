@@ -14,6 +14,7 @@
 
 #define D (*data)
 #define M (D.map3d)
+#define N (D.map)
 #define P (*p)
 
 /*
@@ -28,8 +29,8 @@ t_xyzcp	*make_xyz_from_z(t_data *data, unsigned int row, unsigned int col)
 	p = init_xyzcp();
 	if (!p)
 		return (NULL);
-	P.z = (*(M[row][col])).z;
-	P.c = (*(M[row][col])).c;
+	P.z = (*(N[row][col])).z;
+	P.c = make_col_from_int(get_int_from_col((*(N[row][col])).c));
 	P.x = (((float)D.wid - 1.0) / -2.0) + (float)col;
 	P.y = (((float)D.len - 1.0) / -2.0) + (float)row;
 	return(p);

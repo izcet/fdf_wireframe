@@ -27,38 +27,37 @@
 #define KEY_C 8
 #define KEY_V 9
 
+#define KEY_SPACE 49
+
 #define KEY_ESC 53
 
 #define W (*win)
+#define D (*W.data)
 
 static void		handle_local_adjustments(t_win *win, int keycode)
 {
 	if (keycode == KEY_Z)
-		W.center_x -= MOVE_OFF;
+		W.center_x -= (W.scale / 2);
 	else if (keycode == KEY_X)
-		W.center_y += MOVE_OFF;
+		W.center_y += (W.scale / 2);
 	else if (keycode == KEY_C)
-		W.center_y -= MOVE_OFF;
+		W.center_y -= (W.scale / 2);
 	else if (keycode == KEY_V)
-		W.center_x += MOVE_OFF;
-	else if (keycode == KEY_F && W.scale > SCALE_OFF)
-		W.scale -= SCALE_OFF;
-	else if (keycode == KEY_R)
-		W.scale += SCALE_OFF;
+		W.center_x += (W.scale / 2);
+	else if (keycode == KEY_SPACE)
+	{
+		del_xyzcp_2d_arr(D.map3d, D.len, D.wid);
+		make_3d_map_from_zcp(W.data);
+		W.center_x = W.wid / 2;
+		W.center_y = W.len / 2;
+	}
 }
 
 int		key_pressed(int keycode, void *ptr)
 {
-	char	*str;
 	t_win	*win;
 
 	win = (t_win*)ptr;
-	//
-	str = ft_itoa(keycode);
-	ft_putstr("Keycode is ");
-	ft_putendl(str);
-	free(str);
-	//
 	if (keycode == KEY_ESC)
 	{
 		del_data(W.data);

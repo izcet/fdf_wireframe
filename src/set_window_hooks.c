@@ -3,6 +3,12 @@
 #define D (*data)
 #define W (*(D.win[i]))
 
+static void		particle_effects(t_win *win)
+{
+	ft_putendl("fuck you sean I have particle effects");
+	(void)win;
+}
+
 void	set_window_hooks(t_data *data)
 {
 	int	i;
@@ -15,4 +21,6 @@ void	set_window_hooks(t_data *data)
 		mlx_expose_hook(W.ptr, expose_hook, D.win[i]);
 		mlx_loop_hook(D.mlx, loop_hook, D.win[i]);
 	}
+	if (0)
+		particle_effects(D.win[0]);
 }

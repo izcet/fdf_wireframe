@@ -38,7 +38,8 @@ SRC_FILE	=	main.c get_col_from_range.c gradient_col.c parse_file.c\
 				rotate_point_around_origin.c rotate_point_around_point.c \
 				make_xyzcp_from_zcp.c set_win.c rotate_grid_x.c \
 				rotate_grid_y.c rotate_grid_z.c set_window_hooks.c \
-				key_pressed.c mouse_pressed.c expose_hook.c loop_hook.c
+				key_pressed.c mouse_pressed.c expose_hook.c loop_hook.c \
+				draw_grid.c draw_line.c
 				#draw_isometric.c
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))

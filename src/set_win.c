@@ -15,15 +15,18 @@
 #define W (*win)
 #define D (*data)
 
-void	set_win(t_data *data, unsigned int wid, unsigned int len, t_win *win)
+void	set_win(t_data *data, unsigned int range, char *str, t_win *win)
 {
-	W.wid = wid;
-	W.len = len;
-	W.scale = ((wid + len) / 2) / (((D.wid + D.len) / 2) + 2);
-	W.center_x = wid/2;
-	W.center_y = len/2;
+	W.wid = range;
+	W.len = range;
+	if (D.wid > D.len)
+		W.scale = range / (D.wid + 2);
+	else
+		W.scale = range / (D.len + 2);
+	W.center_x = (range / 2);
+	W.center_y = (range / 2);
 	W.true_z = 0;
 	W.data = data;
-	W.ptr = mlx_new_window(D.mlx, wid, len, "Window");
+	W.ptr = mlx_new_window(D.mlx, W.wid, W.len, str);
 }
 
