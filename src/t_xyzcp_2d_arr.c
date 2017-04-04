@@ -12,7 +12,7 @@
 
 #include "mgl.h"
 
-void	del_xyzcp_2d_arr(t_xyzcp ***p, unsigned int len, unsigned int wid)
+void		del_xyzcp_2d_arr(t_xyzcp ***p, unsigned int len, unsigned int wid)
 {
 	unsigned int	i;
 

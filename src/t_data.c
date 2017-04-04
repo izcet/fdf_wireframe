@@ -12,7 +12,7 @@
 
 #include "mgl.h"
 
-#define D (*data) 
+#define D (*data)
 
 void	del_data(t_data *data)
 {

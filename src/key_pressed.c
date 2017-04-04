@@ -56,7 +56,7 @@ static void		handle_local_adjustments(t_win *win, int keycode)
 	}
 }
 
-int		key_pressed(int keycode, void *ptr)
+int				key_pressed(int keycode, void *ptr)
 {
 	t_win	*win;
 

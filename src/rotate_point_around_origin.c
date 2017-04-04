@@ -15,7 +15,6 @@
 #define P (*p)
 #define T (*t)
 
-#define DTR degreesToRadians
 #define THETA DTR(angle)
 
 void	rot_pox(t_xyzcp *p, double angle)

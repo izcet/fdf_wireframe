@@ -19,6 +19,7 @@
 /*
 ** get_window_point
 */
+
 static t_xyzcp	*gwp(unsigned int row, unsigned int col, t_win *win)
 {
 	t_xyzcp	*p;

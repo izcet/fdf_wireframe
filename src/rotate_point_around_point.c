@@ -27,7 +27,7 @@ static void		increase(t_xyzcp *p, t_xyzcp *offset)
 	P.x = O.x + P.x;
 	P.y = O.y + P.y;
 	P.z = O.z + P.z;
-}	
+}
 
 void			rot_ppx(t_xyzcp *p, t_xyzcp *offset, double angle)
 {

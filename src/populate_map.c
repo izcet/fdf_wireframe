@@ -26,7 +26,7 @@ static void		fill_row(t_zcp **p, unsigned int wid, char *str)
 
 	i = 0;
 	while (i < wid)
-	{ 
+	{
 		while (*str == ' ')
 			str++;
 		(*p[i]).z = ft_atoi(str);

@@ -22,7 +22,7 @@ void	print_data_row(int row, t_data *data)
 	{
 		str = ft_itoa((*(*data).map[row][i]).z);
 		ft_putstr(str);
-		ft_putchar( '\t');
+		ft_putchar('\t');
 		free(str);
 		i++;
 	}

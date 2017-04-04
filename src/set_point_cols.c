@@ -16,11 +16,11 @@
 #define P (*D.map[row][col])
 #define C (*c)
 
-static int		fill_point_colors(t_data *data)
+static int	fill_point_colors(t_data *data)
 {
 	unsigned int	row;
 	unsigned int	col;
-	t_col	*c;
+	t_col			*c;
 
 	row = 0;
 	while (row < D.len)

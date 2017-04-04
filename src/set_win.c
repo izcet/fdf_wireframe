@@ -29,4 +29,3 @@ void	set_win(t_data *data, unsigned int range, char *str, t_win *win)
 	W.data = data;
 	W.ptr = mlx_new_window(D.mlx, W.wid, W.len, str);
 }
-

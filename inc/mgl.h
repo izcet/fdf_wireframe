@@ -24,8 +24,8 @@
 # define COLOR_MIN		0x000000FF
 # define ROT_ANGLE		10
 
-# define degreesToRadians(angleDegrees) (angleDegrees * M_PI / 180.0)
-# define radiansToDegrees(angleRadians) (angleRadians * 180.0 / M_PI)
+# define DTR(x) (x * M_PI / 180.0)
+# define RTD(x) (x * 180.0 / M_PI)
 
 typedef	struct			s_color
 {
@@ -123,10 +123,10 @@ void					del_frame(t_frame *grid, int p_rows, int p_cols);
 void					del_win(t_win *win, void *mlx);
 void					del_data(t_data *data);
 void					del_zcp_1d_arr(t_zcp **p, unsigned int wid);
-void					del_zcp_2d_arr(t_zcp ***p, unsigned int len, 
+void					del_zcp_2d_arr(t_zcp ***p, unsigned int len,
 										unsigned int wid);
 void					del_xyzcp_1d_arr(t_xyzcp **p, unsigned int wid);
-void					del_xyzcp_2d_arr(t_xyzcp ***p, unsigned int len, 
+void					del_xyzcp_2d_arr(t_xyzcp ***p, unsigned int len,
 										unsigned int wid);
 void					del_col_1d_arr(t_col **c, int size);
 void					del_win_1d_arr(t_win **win, int size, void *mlx);
@@ -141,7 +141,7 @@ int						is_valid_color(char *str);
 
 t_xyp					*make_xyp(int x, int y);
 t_zcp					*make_zcp(int z, t_col *c);
-t_xyzcp					*make_xyz_from_z(t_data *d, unsigned int r, 
+t_xyzcp					*make_xyz_from_z(t_data *d, unsigned int r,
 										unsigned int c);
 
 t_xyp					*parse_file(char *file);
@@ -152,7 +152,6 @@ int						populate_map(t_data *data, char *file);
 
 t_col					*get_col_from_range(t_data *data, int row, int col);
 unsigned int			gradient_col(t_col *a, t_col *b, int n, int val);
-
 
 void					print_data_map(t_data *data);
 void					print_data_row(int row, t_data *data);

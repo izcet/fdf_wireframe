@@ -28,7 +28,7 @@ t_xyzcp	*make_xyz_from_z(t_data *data, unsigned int row, unsigned int col)
 	P.c = make_col_from_int(get_int_from_col((*(N[row][col])).c));
 	P.x = (((float)D.wid - 1.0) / -2.0) + (float)col;
 	P.y = (((float)D.len - 1.0) / -2.0) + (float)row;
-	return(p);
+	return (p);
 }
 
 int		make_3d_map_from_zcp(t_data *data)
