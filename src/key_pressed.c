@@ -28,7 +28,6 @@
 #define KEY_V 9
 
 #define KEY_SPACE 49
-
 #define KEY_ESC 53
 
 #define W (*win)
@@ -67,17 +66,17 @@ int		key_pressed(int keycode, void *ptr)
 		del_data(W.data);
 		exit(0);
 	}
-	else if (keycode == KEY_Q)
-		rotate_grid_x_pos(W.data);
-	else if (keycode == KEY_A)
-		rotate_grid_x_neg(W.data);
-	else if (keycode == KEY_W)
-		rotate_grid_y_pos(W.data);
 	else if (keycode == KEY_S)
-		rotate_grid_y_neg(W.data);
-	else if (keycode == KEY_E)
-		rotate_grid_z_pos(W.data);
+		rotate_grid_x_pos(W.data);
+	else if (keycode == KEY_W)
+		rotate_grid_x_neg(W.data);
+	else if (keycode == KEY_A)
+		rotate_grid_y_pos(W.data);
 	else if (keycode == KEY_D)
+		rotate_grid_y_neg(W.data);
+	else if (keycode == KEY_Q)
+		rotate_grid_z_pos(W.data);
+	else if (keycode == KEY_E)
 		rotate_grid_z_neg(W.data);
 	else
 		handle_local_adjustments(win, keycode);

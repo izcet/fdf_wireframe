@@ -85,20 +85,12 @@ static void		draw_by(t_xyzcp *p1, t_xyzcp *p2, t_win *win)
 void			draw_line(t_xyzcp *p1, t_xyzcp *p2, t_win *win)
 {
 	if (A.x < B.x)
-	{
 		draw_ax(p1, p2, win);
-	}
 	else
-	{
 		draw_bx(p1, p2, win);
-	}
 	if (A.y < B.y)
-	{
 		draw_ay(p1, p2, win);
-	}
 	else
-	{
 		draw_by(p1, p2, win);
-	}
 	free(p2);
 }
