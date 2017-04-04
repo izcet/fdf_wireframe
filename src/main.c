@@ -22,6 +22,7 @@ static int		cleanup(t_data *data, int ret)
 
 static void		start_graphics(t_data *data)
 {
+	print_keys();
 	D.num_win = 3;
 	D.win = init_win_1d_arr(D.num_win);
 	set_win(data, 800, "800 Pixels", D.win[0]);

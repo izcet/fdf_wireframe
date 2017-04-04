@@ -185,4 +185,6 @@ void					rotate_grid_z_neg(t_data *data);
 void					draw_grid(t_win *win);
 void					draw_line(t_xyzcp *p1, t_xyzcp *p2, t_win *win);
 
+void					print_keys(void);
+
 #endif
