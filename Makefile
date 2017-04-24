@@ -6,7 +6,7 @@
 #    By: irhett <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/03/17 21:20:19 by irhett           ###   ########.fr        #
+#    Updated: 2017/04/23 23:39:23 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@cd $(LIBFT_DIR) && make fclean
-#	@cd $(MLX_DIR) && make fclean
 
 re:	fclean all
 
