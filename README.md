@@ -5,7 +5,7 @@ The first project in the Graphics Branch of the curriculum, this project require
 - displays a wireframe of the points
 - listens in the window to terminate when "esc" is pressed
 
-####Bonus:
+#### Bonus:
 - Colors, color gradients
 - be able to move and/or rotate the wireframe and/or view
 - be able to read in custom colors from the input file
