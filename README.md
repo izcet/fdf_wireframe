@@ -1,6 +1,6 @@
 # FDF
 The first project in the Graphics Branch of the curriculum, this project requires us to read in a file containing point values and render them on screen in a wireframe, connecting adjacent points.
-####Requirements:
+#### Requirements:
 - does not error (no double free, segfault, or unexpected termination)
 - displays a wireframe of the points
 - listens in the window to terminate when "esc" is pressed
